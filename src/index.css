@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@theme {
+  /* Paleta provisória inspirada no Instagram do cliente (logo "R" amarelo/verde,
+     fundo azul nos templates). Ajustar tons exatos com print de referência do cliente. */
+  --color-brand-blue: #123a8c;
+  --color-brand-blue-dark: #0a1f4d;
+  --color-brand-yellow: #f2c230;
+  --color-brand-green: #3c9a4a;
+
+  --color-ink: #14151a;
+  --color-ink-muted: #5b5d68;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f6f5f1;
+  --color-surface-dim: #eeece5;
+
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-brand-yellow);
+  color: var(--color-brand-blue-dark);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono-label {
+  font-family: var(--font-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Faixa de texto em loop contínuo (marquee). Puramente em CSS para não
+   depender de JS rodando a cada frame; pausa quando reduced-motion. */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 26s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes blob-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -18px, 0) scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .marquee-track {
+    animation: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
