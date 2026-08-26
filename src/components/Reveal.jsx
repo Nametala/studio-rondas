@@ -1,6 +1,5 @@
 import { motion } from 'motion/react'
-
-const EASE = [0.16, 1, 0.3, 1]
+import { EASE } from '../lib/motion'
 
 export function Reveal({
   children,
@@ -51,5 +50,30 @@ export function RevealItem({ children, className, y = 16 }) {
     >
       {children}
     </motion.div>
+  )
+}
+
+// Rótulo pequeno em mono acima do título de cada seção (ex: "02 · Modalidades").
+export function SectionEyebrow({ children, delay = 0 }) {
+  return (
+    <Reveal delay={delay}>
+      <span className="font-mono-label text-sm text-brand-green">
+        {children}
+      </span>
+    </Reveal>
+  )
+}
+
+// Título h2 padrão de seção. `className` permite ajustar margem/largura
+// quando o layout da seção exige (ex.: sem mt-3 quando já está numa grid).
+export function SectionHeading({ children, delay = 0.05, className = 'mt-3 max-w-lg' }) {
+  return (
+    <Reveal delay={delay}>
+      <h2
+        className={`font-display text-3xl font-semibold text-balance leading-tight tracking-tight text-ink sm:text-4xl ${className}`}
+      >
+        {children}
+      </h2>
+    </Reveal>
   )
 }

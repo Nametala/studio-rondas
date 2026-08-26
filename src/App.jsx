@@ -1,6 +1,7 @@
 import { Header } from './components/Header'
 import { Hero } from './components/Hero'
 import { Sobre } from './components/Sobre'
+import { Diferenciais } from './components/Diferenciais'
 import { Modalidades } from './components/Modalidades'
 import { Equipe } from './components/Equipe'
 import { Galeria } from './components/Galeria'
@@ -15,15 +16,22 @@ import { site } from './config/site'
 function App() {
   return (
     <>
+      <a
+        href="#main-content"
+        className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:left-4 focus-visible:top-4 focus-visible:z-50 focus-visible:rounded-full focus-visible:bg-brand-blue focus-visible:px-4 focus-visible:py-2 focus-visible:text-sm focus-visible:font-medium focus-visible:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+      >
+        Pular para o conteúdo principal
+      </a>
       <ScrollProgress />
       <Header />
-      <main>
+      <main id="main-content">
         <Hero />
         <Marquee
           items={site.modalidades.map((m) => m.nome.toUpperCase())}
           className="bg-brand-blue-dark py-3 text-white/80"
         />
         <Sobre />
+        <Diferenciais />
         <Modalidades />
         <Equipe />
         <Galeria />

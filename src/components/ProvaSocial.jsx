@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import { animate } from 'motion'
 import { motion, useInView } from 'motion/react'
 import { site } from '../config/site'
-import { Reveal } from './Reveal'
+import { Reveal, SectionEyebrow, SectionHeading } from './Reveal'
+import { EASE } from '../lib/motion'
 
 function useCountUp(target, isInView, decimals = 0) {
   const [value, setValue] = useState(0)
@@ -11,7 +12,7 @@ function useCountUp(target, isInView, decimals = 0) {
     if (!isInView) return
     const controls = animate(0, target, {
       duration: 1.4,
-      ease: [0.16, 1, 0.3, 1],
+      ease: EASE,
       onUpdate: (latest) => setValue(latest),
     })
     return () => controls.stop()
@@ -29,23 +30,18 @@ export function ProvaSocial() {
   return (
     <section id="avaliacoes" className="scroll-mt-16 px-4 py-20 sm:px-6 sm:py-28">
       <div ref={ref} className="mx-auto max-w-2xl text-center">
-        <Reveal>
-          <span className="font-mono-label text-sm text-brand-green">
-            06 · Avaliações
-          </span>
-        </Reveal>
-        <Reveal delay={0.05}>
-          <h2 className="font-display mt-3 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
-            O que dizem no Google
-          </h2>
-        </Reveal>
+        <SectionEyebrow>06 · Avaliações</SectionEyebrow>
+        <SectionHeading className="mt-3">O que dizem no Google</SectionHeading>
 
-        <div className="mt-10 flex items-center justify-center gap-2">
-          <span className="font-display text-5xl font-semibold text-ink sm:text-6xl">
+        <div
+          aria-hidden="true"
+          className="mt-10 flex items-center justify-center gap-2"
+        >
+          <span className="font-display text-5xl font-semibold tabular-nums text-ink sm:text-6xl">
             {nota}
           </span>
           <div className="flex flex-col items-start gap-1">
-            <div aria-hidden="true" className="flex gap-0.5 text-brand-yellow">
+            <div className="flex gap-0.5 text-brand-yellow">
               {[0, 1, 2, 3, 4].map((i) => (
                 <motion.span
                   key={i}
@@ -57,9 +53,18 @@ export function ProvaSocial() {
                 </motion.span>
               ))}
             </div>
-            <span className="text-sm text-ink-muted">{total} avaliações</span>
+            <span className="text-sm tabular-nums text-ink-muted">
+              {total} avaliações
+            </span>
           </div>
         </div>
+        <p className="sr-only">
+          Nota{' '}
+          {site.avaliacoes.nota.toLocaleString('pt-BR', {
+            minimumFractionDigits: 1,
+          })}{' '}
+          de 5, com base em {site.avaliacoes.total} avaliações no Google.
+        </p>
 
         <Reveal delay={0.2}>
           <a

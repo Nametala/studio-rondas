@@ -6,7 +6,7 @@ const common = {
   strokeLinejoin: 'round',
 }
 
-export function GalleryIcon({ name, className }) {
+export function Icon({ name, className }) {
   const props = { ...common, viewBox: '0 0 24 24', className, 'aria-hidden': true }
 
   switch (name) {
@@ -40,6 +40,27 @@ export function GalleryIcon({ name, className }) {
           <path d="M4 11 12 4l8 7" />
           <path d="M6 10v9h12v-9" />
           <path d="M10 19v-5h4v5" />
+        </svg>
+      )
+    case 'fisio':
+      return (
+        <svg {...props}>
+          <path d="M3 13h3l2-5 3 9 2-6 1.5 2H21" />
+        </svg>
+      )
+    case 'grupo':
+      return (
+        <svg {...props}>
+          <circle cx="8" cy="9" r="2.6" />
+          <circle cx="16" cy="9" r="2.6" />
+          <path d="M3.5 19c.3-2.8 2.2-4.7 4.5-4.7s4.2 1.9 4.5 4.7M11.5 19c.3-2.8 2.2-4.7 4.5-4.7s4.2 1.9 4.5 4.7" />
+        </svg>
+      )
+    case 'sparkle':
+      return (
+        <svg {...props}>
+          <path d="M12 3v4M12 17v4M3 12h4M17 12h4" />
+          <path d="M8 8l2 2M14 14l2 2M16 8l-2 2M10 14l-2 2" />
         </svg>
       )
     default:

@@ -1,7 +1,7 @@
-import { motion } from 'motion/react'
+import { motion, useReducedMotion } from 'motion/react'
+import { site } from '../config/site'
+import { EASE } from '../lib/motion'
 import { WhatsAppLink } from './WhatsAppButton'
-
-const EASE = [0.16, 1, 0.3, 1]
 
 const headline = ['Treino de perto.', 'Resultado real.']
 
@@ -16,15 +16,52 @@ const line = {
 }
 
 export function Hero() {
+  const prefersReducedMotion = useReducedMotion()
+
+  function handleSpotlight(event) {
+    if (prefersReducedMotion) return
+    const rect = event.currentTarget.getBoundingClientRect()
+    event.currentTarget.style.setProperty('--spot-x', `${event.clientX - rect.left}px`)
+    event.currentTarget.style.setProperty('--spot-y', `${event.clientY - rect.top}px`)
+  }
+
   return (
     <section
       id="topo"
+      onMouseMove={handleSpotlight}
       className="relative scroll-mt-16 overflow-hidden bg-brand-blue px-4 pb-20 pt-32 text-white sm:px-6 sm:pb-28 sm:pt-40"
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <div className="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-brand-green/30 blur-3xl motion-safe:animate-[blob-float_9s_ease-in-out_infinite]" />
         <div className="absolute -bottom-32 -right-16 h-96 w-96 rounded-full bg-brand-yellow/20 blur-3xl motion-safe:animate-[blob-float_11s_ease-in-out_infinite_-3s]" />
+        <div className="absolute left-1/3 top-1/2 h-64 w-64 rounded-full bg-white/10 blur-3xl motion-safe:animate-[blob-float_13s_ease-in-out_infinite_-6s]" />
+        {!prefersReducedMotion && (
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                'radial-gradient(480px circle at var(--spot-x, 50%) var(--spot-y, 20%), rgba(242,194,48,0.12), transparent 60%)',
+            }}
+          />
+        )}
       </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20, scale: 0.9 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.6, delay: 1.15, ease: EASE }}
+        className="absolute right-4 top-24 z-10 hidden items-center gap-3 rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-white shadow-lg backdrop-blur-md sm:right-8 sm:top-28 sm:flex"
+      >
+        <span aria-hidden="true" className="text-2xl leading-none text-brand-yellow">
+          ★
+        </span>
+        <div className="text-left leading-tight">
+          <p className="font-display text-lg font-semibold">
+            {site.avaliacoes.nota.toLocaleString('pt-BR', { minimumFractionDigits: 1 })}
+          </p>
+          <p className="text-xs text-white/70">{site.avaliacoes.total} avaliações</p>
+        </div>
+      </motion.div>
 
       <div className="relative mx-auto max-w-3xl text-center">
         <motion.p

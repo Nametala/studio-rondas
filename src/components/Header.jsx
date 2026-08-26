@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { motion, useMotionValueEvent, useScroll } from 'motion/react'
 import { site } from '../config/site'
+import { EASE } from '../lib/motion'
+import { Logo } from './Logo'
 import { WhatsAppLink } from './WhatsAppButton'
 
 export function Header() {
@@ -15,7 +17,7 @@ export function Header() {
     <motion.header
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.6, ease: EASE }}
       className={`fixed inset-x-0 top-0 z-40 transition-colors duration-300 ${
         scrolled
           ? 'border-b border-black/5 bg-surface/90 backdrop-blur-md'
@@ -25,9 +27,11 @@ export function Header() {
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
         <a
           href="#topo"
-          className="font-display rounded text-lg font-semibold tracking-tight text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2"
+          aria-label={site.nome}
+          className="flex items-center gap-2 rounded font-display text-lg font-semibold tracking-tight text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2"
         >
-          {site.nome}
+          <Logo />
+          <span className="sr-only sm:not-sr-only">{site.nome}</span>
         </a>
         <WhatsAppLink className="inline-flex shrink-0 items-center gap-2 rounded-full bg-brand-green px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-green/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2">
           Marcar aula experimental

@@ -19,10 +19,6 @@ export const site = {
   },
 
   endereco: {
-    logradouro: 'Rua Bernardo Guimarães, 280',
-    bairro: 'Funcionários',
-    cidade: 'Belo Horizonte',
-    estado: 'MG',
     enderecoCompleto:
       'Rua Bernardo Guimarães, 280 - Funcionários, Belo Horizonte - MG',
     mapsEmbedUrl:
@@ -53,21 +49,53 @@ export const site = {
   modalidades: [
     {
       nome: 'Pilates',
+      icone: 'pilates',
       descricao:
         'Aulas em turma reduzida, com foco em postura, mobilidade e fortalecimento.',
     },
     {
       nome: 'Musculação personalizada',
+      icone: 'dumbbell',
       descricao:
         'Treino adaptado ao seu objetivo, com acompanhamento próximo.',
     },
     {
       nome: 'Personal',
+      icone: 'personal',
       descricao: 'Atendimento individual, horário e plano de treino sob medida.',
     },
     {
       nome: 'Fisioterapia',
+      icone: 'fisio',
       descricao: 'Avaliação e reabilitação integradas ao treino.',
+    },
+  ],
+
+  // Diferenciais confirmados a partir das avaliações do Google (não são
+  // números/estatísticas inventados — só fatos citados por clientes reais).
+  diferenciais: [
+    {
+      icone: 'personal',
+      titulo: 'Atendimento de perto',
+      descricao:
+        'Acompanhamento próximo em cada treino, não um professor distante olhando pra turma toda.',
+    },
+    {
+      icone: 'grupo',
+      titulo: 'Sem lotação',
+      descricao:
+        'Turma reduzida, sem a fila de aparelhos das academias grandes.',
+    },
+    {
+      icone: 'sparkle',
+      titulo: 'Equipamento novo',
+      descricao: 'Aparelhos trocados recentemente, sempre em bom estado.',
+    },
+    {
+      icone: 'espaco',
+      titulo: 'Tudo em um só lugar',
+      descricao:
+        'Musculação, pilates, personal e fisioterapia sob o mesmo teto.',
     },
   ],
 
