@@ -10,7 +10,7 @@ function GaleriaSlide({ slide, index, total }) {
       role="group"
       aria-roledescription="slide"
       aria-label={`${slide.legenda} — ${index + 1} de ${total}`}
-      className={`relative flex aspect-[4/3] w-[80%] shrink-0 snap-start flex-col justify-end overflow-hidden rounded-2xl border border-line p-6 sm:w-[24rem] ${
+      className={`group relative flex aspect-[4/3] w-[80%] shrink-0 snap-start flex-col justify-end overflow-hidden rounded-2xl border border-line p-6 sm:w-[24rem] ${
         slide.foto ? 'bg-ink-deep text-surface' : 'bg-surface-alt text-ink'
       }`}
     >
@@ -19,7 +19,7 @@ function GaleriaSlide({ slide, index, total }) {
           <img
             src={slide.foto}
             alt={slide.legenda}
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06] motion-reduce:transform-none"
           />
           <div
             aria-hidden="true"

@@ -139,10 +139,28 @@ desligado sob `prefers-reduced-motion`.
 - Entradas: `whileInView` com `viewport={{ once: true }}`, `opacity/y`, `ease` = `EASE`
   (`[0.16, 1, 0.3, 1]` em `src/lib/motion.js`), duração 0.6–0.85s, stagger ~0.08.
   Componentes prontos: `Reveal`, `RevealGroup`/`RevealItem` em `src/components/Reveal.jsx`.
-- Parallax: só em camadas decorativas (arco do hero), nunca em texto.
+- **Cortina de palavras** (`WordReveal`): cada linha do título é uma máscara com
+  `overflow-hidden` e as palavras sobem de `y: 112%`. Usada no `<h1>` do hero (no
+  carregamento) e em todo `SectionHeading` (ao entrar em tela). Só para títulos
+  curtos — em parágrafo o efeito vira ruído e atrapalha a leitura.
+- **Parallax em camadas** (`HeroArt`): quatro camadas com amplitudes de 18 a 100px,
+  suavizadas por `useSpring`. O piso e o aparelho ficam na *mesma* camada de
+  propósito: separá-los descola o reformer do chão e quebra a composição.
+  Nunca aplicar parallax em texto.
+- **Botão magnético** (`Magnetic`): o CTA principal segue o cursor com mola. Só age
+  em `(hover: hover) and (pointer: fine)` — em toque, puxar o alvo sob o dedo
+  prejudicaria o acerto do toque.
+- **Números** (`CountUp`): contam ao entrar em tela; sob reduced-motion nascem no
+  valor final, derivado no render (sem `setState` de efeito).
+- Hover de linha/cartão: preenchimento que varre com `scale-x` a partir de
+  `origin-left`. Anima só `transform` — nada de `width`/`height`, que forçam layout.
 - Marquee: CSS puro (`.marquee-track`), pausa sob reduced-motion.
 - `<MotionConfig reducedMotion="user">` em `main.jsx` — toda animação respeita o sistema.
+  Efeitos em CSS puro carregam `motion-reduce:` explicitamente, já que o MotionConfig
+  não os alcança.
 - Hover: transições 150–300ms; nada de transform que empurre layout.
+- Um só efeito de scroll pesado por página (o parallax do hero). Não empilhar seções
+  fixadas: brigam com o scroll nativo e pioram muito o mobile.
 
 ---
 
@@ -152,11 +170,32 @@ Todo texto editável vive em `src/config/site.js`. Campos `PLACEHOLDER` (WhatsAp
 horário, nomes da equipe, texto "Sobre", logo oficial) ficam visíveis como pendência e
 **não devem ser inventados** — ver `PRODUCT.md` e `README.md`.
 
-As fotos de equipe e galeria hoje apontam para o Picsum com sementes fixas: são
-imagens genéricas só para compor a apresentação de venda, e precisam sair antes de
-publicar. O monograma em `src/components/Logo.jsx` é um desenho aproximado do avatar
-do Instagram (disco amarelo, "R" verde, brilho ultramarino) — substituir pelo vetor
+O monograma em `src/components/Logo.jsx` é um desenho aproximado do avatar do
+Instagram (disco amarelo, "R" verde, brilho ultramarino) — substituir pelo vetor
 oficial quando o cliente enviar.
+
+### Ilustrações (`public/ilustra/`)
+
+Sem fotos reais, o site usa ilustração vetorial própria em vez de banco de imagem.
+A direção é deliberada: **equipamento, interiores e tipografia — sem figura humana.**
+Silhueta de pessoa em vetor plano é fácil de errar e, malfeita, lê como defeito;
+o aparelho e o espaço comunicam a modalidade sem esse risco.
+
+| Arquivo | O que mostra | Onde entra |
+|---------|--------------|------------|
+| `pilates.svg` | Reformer em vista lateral | Galeria + `HeroArt` |
+| `musculacao.svg` | Rack com halteres | Galeria |
+| `atendimento.svg` | Ficha de treino com progresso | Galeria |
+| `recepcao.svg` | Interior: janela, balcão, luminárias, planta | Galeria |
+| `equipe-1..3.svg` | Cartões de monograma (inicial em serifa) | Equipe |
+
+Regras ao criar novas peças: paleta da marca apenas; grão em `feTurbulence` a ~0.10
+de opacidade; o brilho de oito pontas como pontuação, nunca como elemento principal;
+fundo escuro o bastante onde houver legenda branca sobreposta. **Nada de círculos
+concêntricos** — lêem como anilha e foram removidos de propósito.
+
+Tudo isso é preenchimento para a apresentação de venda e sai quando chegarem as fotos
+reais: basta trocar a string em `foto` dentro de `src/config/site.js`.
 
 ---
 

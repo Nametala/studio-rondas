@@ -101,51 +101,51 @@ export const site = {
 
   // PLACEHOLDER — confirmar nomes e funções com o cliente antes de publicar.
   // As imagens abaixo são composições genéricas geradas na paleta da marca
-  // (public/placeholders/), só para preencher o site na apresentação de
+  // (public/ilustra/), só para preencher o site na apresentação de
   // venda — trocar por fotos reais antes de publicar.
   equipe: [
     {
       nome: 'Jackson',
       funcao: 'Personal de musculação',
-      foto: '/placeholders/equipe-1.svg',
+      foto: '/ilustra/equipe-1.svg',
     },
     {
       nome: 'João',
       funcao: 'Professor',
-      foto: '/placeholders/equipe-2.svg',
+      foto: '/ilustra/equipe-2.svg',
     },
     {
       nome: 'Hugo',
       funcao: 'Professor',
-      foto: '/placeholders/equipe-3.svg',
+      foto: '/ilustra/equipe-3.svg',
     },
   ],
 
   // PLACEHOLDER — trocar por fotos reais do espaço assim que o cliente
   // confirmar o uso de imagens próprias (ou do Instagram @studiorondas).
   // As imagens abaixo são composições genéricas geradas na paleta da marca
-  // (public/placeholders/), só para preencher o site na apresentação de
+  // (public/ilustra/), só para preencher o site na apresentação de
   // venda — trocar por fotos reais antes de publicar.
   galeria: [
     {
       icone: 'dumbbell',
       legenda: 'Salão de musculação',
-      foto: '/placeholders/espaco-1.svg',
+      foto: '/ilustra/musculacao.svg',
     },
     {
       icone: 'pilates',
       legenda: 'Sala de pilates',
-      foto: '/placeholders/espaco-2.svg',
+      foto: '/ilustra/pilates.svg',
     },
     {
       icone: 'personal',
       legenda: 'Atendimento personalizado',
-      foto: '/placeholders/espaco-3.svg',
+      foto: '/ilustra/atendimento.svg',
     },
     {
       icone: 'espaco',
       legenda: 'Recepção e estrutura',
-      foto: '/placeholders/espaco-4.svg',
+      foto: '/ilustra/recepcao.svg',
     },
   ],
 };

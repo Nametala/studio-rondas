@@ -8,7 +8,7 @@ function Avatar({ pessoa }) {
       <img
         src={pessoa.foto}
         alt={pessoa.nome}
-        className="aspect-[4/5] w-full rounded-2xl object-cover"
+        className="aspect-[4/5] w-full rounded-2xl object-cover transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05] motion-reduce:transform-none"
       />
     )
   }

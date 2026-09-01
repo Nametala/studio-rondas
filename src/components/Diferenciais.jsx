@@ -16,7 +16,7 @@ export function Diferenciais() {
           {site.diferenciais.map((diferencial) => (
             <RevealItem key={diferencial.titulo} className="h-full">
               <article className="group flex h-full flex-col gap-5 bg-surface-alt p-8 transition-colors duration-300 hover:bg-surface sm:p-10">
-                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-accent-fill/20 text-accent transition-transform duration-300 group-hover:-translate-y-0.5">
+                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-accent-fill/20 text-accent transition-all duration-300 group-hover:-translate-y-1 group-hover:scale-110 group-hover:bg-accent-fill group-hover:text-ink motion-reduce:transform-none">
                   <Icon name={diferencial.icone} className="h-6 w-6" />
                 </span>
                 <div>
