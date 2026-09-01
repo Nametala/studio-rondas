@@ -1,32 +1,45 @@
 @import "tailwindcss";
 
 @theme {
-  /* ── Paleta: claro e editorial ──────────────────────────────────────────
-     Papel creme quente como base, tinta quase preta para texto, âmbar como
-     único acento e verde reservado só para o WhatsApp. Todos os pares de
-     texto abaixo passam WCAG AA (4.5:1) — ver design-system/studio-rondas. */
-  --color-surface: #f7f4ec;        /* papel creme — fundo principal */
-  --color-surface-alt: #efe9db;    /* creme mais fechado — seções alternadas */
-  --color-ink-deep: #16130e;       /* seções escuras de respiro (punctuation) */
+  /* ── Paleta: extraída do Instagram @studiorondas ──────────────────────────
+     Amostragem de pixels de 48 posts + do avatar (logo). Duas cores carregam
+     a marca: o ultramarino dos fundos de post e o lima dos blocos de
+     destaque; o amarelo e o verde vêm do próprio logo (disco amarelo, "R"
+     verde). Todos os pares de texto abaixo passam WCAG AA (≥4.5:1) —
+     ver design-system/studio-rondas/MASTER.md. */
 
-  --color-ink: #211d16;            /* texto principal — 14.8:1 sobre creme */
-  --color-ink-muted: #5c5548;      /* texto secundário — 5.9:1 sobre creme */
-  --color-line: #ded6c3;           /* fios/hairlines sobre creme */
+  /* Cores de marca (valores medidos) */
+  --color-brand-blue: #0b1a83;     /* ultramarino — fundo dominante dos posts */
+  --color-brand-lime: #99c10b;     /* lima — blocos de destaque dos posts */
+  --color-brand-yellow: #fdd504;   /* amarelo do disco do logo */
+  --color-brand-green: #0f7833;    /* verde do "R" do logo */
 
-  --color-accent: #b45309;         /* âmbar para links e marcas pequenas — 5.1:1 */
-  --color-accent-fill: #e0a43b;    /* âmbar de preenchimento — usar com texto tinta */
-  --color-highlight: #f4cd76;      /* traço de marca-texto (decorativo) */
+  /* Superfícies */
+  --color-surface: #ffffff;        /* branco — fundo principal */
+  --color-surface-alt: #f1eee8;    /* off-white morno — seções alternadas */
+  --color-ink-deep: #0b1a83;       /* ultramarino — seção de respiro (punctuation) */
 
-  --color-whatsapp: #2f7d3c;       /* verde do WhatsApp — 5.1:1 com texto branco */
-  --color-whatsapp-dark: #276a33;
+  /* Texto e fios */
+  --color-ink: #12121a;            /* texto principal — 18.6:1 sobre branco */
+  --color-ink-muted: #55555f;      /* texto secundário — 7.4:1 sobre branco */
+  --color-line: #dedce4;           /* fios/hairlines */
 
-  --color-ring: #8a4b0a;           /* foco visível sobre creme */
+  /* Acentos */
+  --color-accent: #0b1a83;         /* ultramarino — links, eyebrow — 14.1:1 */
+  --color-accent-fill: #99c10b;    /* lima de preenchimento — usar com texto tinta */
+  --color-highlight: #fdd504;      /* amarelo do logo — marca-texto e realces */
 
-  --font-sans: 'Barlow', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-display: 'Barlow Condensed', 'Barlow', system-ui, sans-serif;
+  --color-whatsapp: #0f7833;       /* verde da marca, que também é o do WhatsApp */
+  --color-whatsapp-dark: #0b6329;
+
+  --color-ring: #0b1a83;           /* foco visível */
+
+  /* Tipografia: serifa didone condensada nos títulos (como nas artes do
+     Instagram) + grotesca justa em rótulos, números e corpo de texto. */
+  --font-sans: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Instrument Serif', 'Times New Roman', Georgia, serif;
   --font-mono: ui-monospace, 'SF Mono', 'Menlo', 'Consolas', monospace;
 
-  /* Escala de espaçamento editorial (respiro generoso). */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -59,12 +72,13 @@ body {
 }
 
 ::selection {
-  background: var(--color-accent-fill);
+  background: var(--color-highlight);
   color: var(--color-ink);
 }
 
-/* Grão sutil de papel sobre todo o site — tira o aspecto "achatado" de
-   template sem custo de imagem (ruído SVG via feTurbulence). */
+/* Grão sutil sobre todo o site — as artes do Instagram têm essa textura de
+   ruído sobre os fundos chapados; aqui ela vem por SVG (feTurbulence), sem
+   custo de imagem. */
 body::after {
   content: '';
   position: fixed;
@@ -76,19 +90,22 @@ body::after {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
+/* Títulos editoriais: Instrument Serif só existe em 400 — nunca aplicar
+   font-semibold/bold junto, senão o navegador sintetiza um falso negrito. */
 .font-display {
   font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-weight: 400;
+  letter-spacing: -0.005em;
 }
 
-/* Rótulo pequeno acima de cada título de seção — condensado, versalete,
-   com um tracinho de régua antes do texto. */
+/* Rótulo pequeno acima de cada título de seção. Nas artes do Instagram esses
+   rótulos ("STUDIO RONDAS", "SAÚDE INTEGRADA") são grotescos em caixa alta
+   com tracking aberto — e não a serifa. */
 .eyebrow {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-weight: 600;
   font-size: 0.8125rem;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   display: inline-flex;
   align-items: center;
@@ -102,24 +119,23 @@ body::after {
   background: currentColor;
 }
 
-/* Traço de marca-texto atrás de uma palavra do título (decorativo). */
+/* Bloco chapado atrás de uma palavra do título — é a assinatura das artes
+   deles (a palavra "Pilates" dentro de um retângulo ultramarino). */
 .swipe {
-  position: relative;
-  isolation: isolate;
-  white-space: nowrap;
+  background: var(--color-brand-blue);
+  color: var(--color-surface);
+  padding: 0.02em 0.16em 0.08em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
-.swipe::after {
-  content: '';
-  position: absolute;
-  left: -0.06em;
-  right: -0.06em;
-  bottom: 0.12em;
-  height: 0.34em;
-  background: var(--color-highlight);
-  z-index: -1;
-  transform: skew(-12deg);
-  transform-origin: left;
+/* Variante amarela do mesmo bloco, com texto tinta. */
+.swipe-alt {
+  background: var(--color-brand-yellow);
+  color: var(--color-ink);
+  padding: 0.02em 0.16em 0.08em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 .no-scrollbar {
@@ -154,10 +170,6 @@ body::after {
 
   .marquee-track {
     animation: none;
-  }
-
-  .swipe::after {
-    transform: skew(-12deg);
   }
 
   *,

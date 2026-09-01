@@ -29,7 +29,7 @@ function GaleriaSlide({ slide, index, total }) {
       ) : (
         <Icon name={slide.icone} className="mb-auto mt-1 h-10 w-10 text-accent" />
       )}
-      <figcaption className="font-display relative z-10 text-lg font-semibold">
+      <figcaption className="font-display relative z-10 text-lg">
         {slide.legenda}
       </figcaption>
     </figure>

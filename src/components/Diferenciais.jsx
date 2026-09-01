@@ -20,7 +20,7 @@ export function Diferenciais() {
                   <Icon name={diferencial.icone} className="h-6 w-6" />
                 </span>
                 <div>
-                  <h3 className="font-display text-2xl font-semibold text-ink">
+                  <h3 className="font-display text-2xl text-ink">
                     {diferencial.titulo}
                   </h3>
                   <p className="mt-2 text-ink-muted">{diferencial.descricao}</p>

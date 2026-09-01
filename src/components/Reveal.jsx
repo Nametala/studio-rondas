@@ -72,7 +72,7 @@ export function SectionHeading({
   return (
     <Reveal delay={delay}>
       <h2
-        className={`font-display text-4xl font-semibold leading-[1.0] tracking-tight text-balance text-ink sm:text-5xl ${className}`}
+        className={`font-display text-4xl leading-[1.05] text-balance text-ink sm:text-5xl ${className}`}
       >
         {children}
       </h2>

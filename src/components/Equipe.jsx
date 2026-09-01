@@ -19,7 +19,7 @@ function Avatar({ pessoa }) {
       className="relative flex aspect-[4/5] w-full items-center justify-center rounded-2xl border border-line bg-surface"
     >
       <Icon name="personal" className="h-10 w-10 text-ink/25" />
-      <span className="font-display absolute bottom-3 right-4 text-2xl font-semibold text-ink/15">
+      <span className="absolute bottom-3 right-4 text-2xl font-bold tabular-nums text-ink/15">
         {pessoa.nome.charAt(0)}
       </span>
     </div>
@@ -52,7 +52,7 @@ export function Equipe() {
                   <Avatar pessoa={pessoa} />
                 </div>
                 <figcaption className="mt-4">
-                  <p className="font-display text-xl font-semibold text-ink">
+                  <p className="font-display text-xl text-ink">
                     {pessoa.nome}
                   </p>
                   <p className="text-sm text-ink-muted">{pessoa.funcao}</p>

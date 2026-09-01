@@ -11,7 +11,7 @@ export function Sobre() {
         <SectionEyebrow>01 — Sobre</SectionEyebrow>
 
         <Reveal delay={0.05}>
-          <p className="font-display mt-6 max-w-4xl text-3xl font-medium leading-[1.15] tracking-tight text-ink text-balance sm:text-[2.75rem]">
+          <p className="font-display mt-6 max-w-4xl text-3xl leading-[1.15] text-ink text-balance sm:text-[2.75rem]">
             Perto de quem treina, do primeiro dia em diante.
           </p>
         </Reveal>

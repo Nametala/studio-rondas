@@ -39,28 +39,28 @@ export function Hero() {
       <motion.div
         aria-hidden="true"
         style={prefersReducedMotion ? undefined : { y: arcY }}
-        className="pointer-events-none absolute -right-40 -top-24 h-[38rem] w-[38rem] rounded-full border border-accent-fill/40 sm:-right-24"
+        className="pointer-events-none absolute -right-40 -top-24 h-[38rem] w-[38rem] rounded-full border border-accent/10 sm:-right-24 sm:border-accent/25"
       >
         <div className="absolute inset-10 rounded-full border border-line" />
-        <div className="absolute inset-24 rounded-full border border-accent-fill/25" />
+        <div className="absolute inset-24 rounded-full border border-accent/8 sm:border-accent/15" />
       </motion.div>
 
       <div className="relative mx-auto max-w-6xl">
         <motion.p
           {...rise(0)}
-          className="font-display text-sm font-semibold uppercase tracking-[0.22em] text-accent"
+          className="text-sm font-semibold uppercase tracking-[0.2em] text-accent"
         >
           {site.nome} — Funcionários, Belo Horizonte
         </motion.p>
 
-        <h1 className="font-display mt-6 max-w-4xl text-[3.25rem] font-semibold uppercase leading-[0.92] tracking-[-0.01em] text-ink sm:text-8xl">
+        <h1 className="font-display mt-6 max-w-4xl text-[3.25rem] leading-[0.95] text-ink sm:text-8xl">
           <span className="block overflow-hidden pb-[0.08em]">
             <motion.span {...rise(0.12)} className="block">
-              Treino <span className="swipe text-ink">de perto</span>.
+              Treino <span className="swipe">de perto</span>.
             </motion.span>
           </span>
           <span className="block overflow-hidden pb-[0.08em]">
-            <motion.span {...rise(0.22)} className="block text-ink-muted">
+            <motion.span {...rise(0.22)} className="block italic text-ink-muted">
               Resultado real.
             </motion.span>
           </span>
@@ -95,11 +95,11 @@ export function Hero() {
             {...rise(0.46)}
             className="flex items-center gap-4 border-t border-line pt-5 sm:justify-self-end sm:border-l sm:border-t-0 sm:pl-6 sm:pt-0"
           >
-            <span className="font-display text-6xl font-semibold leading-none text-ink">
+            <span className="text-6xl font-bold leading-none tabular-nums text-ink">
               {nota}
             </span>
             <div className="leading-tight">
-              <div aria-hidden="true" className="flex gap-0.5 text-accent-fill">
+              <div aria-hidden="true" className="flex gap-0.5 text-accent">
                 {[0, 1, 2, 3, 4].map((i) => (
                   <StarIcon key={i} />
                 ))}

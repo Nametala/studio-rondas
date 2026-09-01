@@ -19,7 +19,7 @@ export function Modalidades() {
                 <span className="font-mono text-sm text-accent">
                   {String(index + 1).padStart(2, '0')}
                 </span>
-                <h3 className="font-display flex items-center gap-3 text-3xl font-semibold text-ink transition-transform duration-300 group-hover:translate-x-1 sm:text-4xl">
+                <h3 className="font-display flex items-center gap-3 text-3xl text-ink transition-transform duration-300 group-hover:translate-x-1 sm:text-4xl">
                   <Icon
                     name={modalidade.icone}
                     className="hidden h-7 w-7 shrink-0 text-accent sm:block"

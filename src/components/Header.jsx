@@ -28,7 +28,7 @@ export function Header() {
         <a
           href="#topo"
           aria-label={site.nome}
-          className="flex items-center gap-2.5 rounded font-display text-lg font-semibold uppercase tracking-[0.06em] text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          className="flex items-center gap-2.5 rounded text-lg font-bold uppercase tracking-[0.08em] text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         >
           <Logo />
           <span className="sr-only sm:not-sr-only">{site.nome}</span>

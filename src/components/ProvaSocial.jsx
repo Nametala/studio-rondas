@@ -47,7 +47,7 @@ export function ProvaSocial() {
           aria-hidden="true"
           className="mt-10 flex items-center justify-center gap-4"
         >
-          <span className="font-display text-7xl font-semibold tabular-nums leading-none sm:text-8xl">
+          <span className="text-7xl font-bold tabular-nums leading-none sm:text-8xl">
             {nota}
           </span>
           <div className="flex flex-col items-start gap-1.5">
@@ -82,7 +82,7 @@ export function ProvaSocial() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2, ease: EASE }}
-          className="font-display mx-auto mt-10 max-w-xl text-3xl font-medium leading-tight text-surface text-balance sm:text-4xl"
+          className="font-display mx-auto mt-10 max-w-xl text-3xl italic leading-tight text-surface text-balance sm:text-4xl"
         >
           Marque uma aula experimental e sinta a diferença de treinar de perto.
         </motion.p>

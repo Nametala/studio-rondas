@@ -99,20 +99,53 @@ export const site = {
     },
   ],
 
-  // PLACEHOLDER — confirmar nomes, funções e fotos com o cliente antes de publicar
+  // PLACEHOLDER — confirmar nomes e funções com o cliente antes de publicar.
+  // As imagens abaixo são composições genéricas geradas na paleta da marca
+  // (public/placeholders/), só para preencher o site na apresentação de
+  // venda — trocar por fotos reais antes de publicar.
   equipe: [
-    { nome: 'Jackson', funcao: 'Personal de musculação', foto: null },
-    { nome: 'João', funcao: 'Professor', foto: null },
-    { nome: 'Hugo', funcao: 'Professor', foto: null },
+    {
+      nome: 'Jackson',
+      funcao: 'Personal de musculação',
+      foto: '/placeholders/equipe-1.svg',
+    },
+    {
+      nome: 'João',
+      funcao: 'Professor',
+      foto: '/placeholders/equipe-2.svg',
+    },
+    {
+      nome: 'Hugo',
+      funcao: 'Professor',
+      foto: '/placeholders/equipe-3.svg',
+    },
   ],
 
-  // PLACEHOLDER — trocar por fotos reais do espaço assim que o cliente confirmar
-  // o uso de imagens próprias (ou do Instagram @studiorondas). `foto: null` faz
-  // o carrossel exibir um cartão com ícone no lugar da imagem.
+  // PLACEHOLDER — trocar por fotos reais do espaço assim que o cliente
+  // confirmar o uso de imagens próprias (ou do Instagram @studiorondas).
+  // As imagens abaixo são composições genéricas geradas na paleta da marca
+  // (public/placeholders/), só para preencher o site na apresentação de
+  // venda — trocar por fotos reais antes de publicar.
   galeria: [
-    { icone: 'dumbbell', legenda: 'Salão de musculação', foto: null },
-    { icone: 'pilates', legenda: 'Sala de pilates', foto: null },
-    { icone: 'personal', legenda: 'Atendimento personalizado', foto: null },
-    { icone: 'espaco', legenda: 'Recepção e estrutura', foto: null },
+    {
+      icone: 'dumbbell',
+      legenda: 'Salão de musculação',
+      foto: '/placeholders/espaco-1.svg',
+    },
+    {
+      icone: 'pilates',
+      legenda: 'Sala de pilates',
+      foto: '/placeholders/espaco-2.svg',
+    },
+    {
+      icone: 'personal',
+      legenda: 'Atendimento personalizado',
+      foto: '/placeholders/espaco-3.svg',
+    },
+    {
+      icone: 'espaco',
+      legenda: 'Recepção e estrutura',
+      foto: '/placeholders/espaco-4.svg',
+    },
   ],
 };
