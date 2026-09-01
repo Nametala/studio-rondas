@@ -11,14 +11,17 @@ import { Footer } from './components/Footer'
 import { WhatsAppFloatButton } from './components/WhatsAppButton'
 import { ScrollProgress } from './components/ScrollProgress'
 import { Marquee } from './components/Marquee'
+import { useSmoothScroll } from './lib/useSmoothScroll'
 import { site } from './config/site'
 
 function App() {
+  useSmoothScroll()
+
   return (
     <>
       <a
         href="#main-content"
-        className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:left-4 focus-visible:top-4 focus-visible:z-50 focus-visible:rounded-full focus-visible:bg-brand-blue focus-visible:px-4 focus-visible:py-2 focus-visible:text-sm focus-visible:font-medium focus-visible:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+        className="sr-only rounded-full focus-visible:not-sr-only focus-visible:fixed focus-visible:left-4 focus-visible:top-4 focus-visible:z-[60] focus-visible:bg-ink focus-visible:px-4 focus-visible:py-2 focus-visible:text-sm focus-visible:font-medium focus-visible:text-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
       >
         Pular para o conteúdo principal
       </a>
@@ -26,10 +29,7 @@ function App() {
       <Header />
       <main id="main-content">
         <Hero />
-        <Marquee
-          items={site.modalidades.map((m) => m.nome.toUpperCase())}
-          className="bg-brand-blue-dark py-3 text-white/80"
-        />
+        <Marquee items={site.modalidades.map((m) => m.nome)} />
         <Sobre />
         <Diferenciais />
         <Modalidades />

@@ -1,63 +1,125 @@
 @import "tailwindcss";
 
 @theme {
-  /* Paleta provisória inspirada no Instagram do cliente (logo "R" amarelo/verde,
-     fundo azul nos templates). Ajustar tons exatos com print de referência do cliente. */
-  --color-brand-blue: #123a8c;
-  --color-brand-blue-dark: #0a1f4d;
-  --color-brand-yellow: #f2c230;
-  /* #3c9a4a original ficava em 3.55:1 sobre branco/texto branco — abaixo do
-     mínimo WCAG AA (4.5:1) para texto normal. Escurecido para 5.10:1. */
-  --color-brand-green: #2f7d3c;
+  /* ── Paleta: claro e editorial ──────────────────────────────────────────
+     Papel creme quente como base, tinta quase preta para texto, âmbar como
+     único acento e verde reservado só para o WhatsApp. Todos os pares de
+     texto abaixo passam WCAG AA (4.5:1) — ver design-system/studio-rondas. */
+  --color-surface: #f7f4ec;        /* papel creme — fundo principal */
+  --color-surface-alt: #efe9db;    /* creme mais fechado — seções alternadas */
+  --color-ink-deep: #16130e;       /* seções escuras de respiro (punctuation) */
 
-  --color-ink: #14151a;
-  --color-ink-muted: #5b5d68;
-  --color-surface: #ffffff;
-  --color-surface-alt: #f6f5f1;
+  --color-ink: #211d16;            /* texto principal — 14.8:1 sobre creme */
+  --color-ink-muted: #5c5548;      /* texto secundário — 5.9:1 sobre creme */
+  --color-line: #ded6c3;           /* fios/hairlines sobre creme */
 
-  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+  --color-accent: #b45309;         /* âmbar para links e marcas pequenas — 5.1:1 */
+  --color-accent-fill: #e0a43b;    /* âmbar de preenchimento — usar com texto tinta */
+  --color-highlight: #f4cd76;      /* traço de marca-texto (decorativo) */
+
+  --color-whatsapp: #2f7d3c;       /* verde do WhatsApp — 5.1:1 com texto branco */
+  --color-whatsapp-dark: #276a33;
+
+  --color-ring: #8a4b0a;           /* foco visível sobre creme */
+
+  --font-sans: 'Barlow', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Barlow Condensed', 'Barlow', system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'Menlo', 'Consolas', monospace;
+
+  /* Escala de espaçamento editorial (respiro generoso). */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 html {
   scroll-behavior: smooth;
+  background: var(--color-surface);
+}
+
+/* Lenis controla o scroll suave; quando ativo ele adiciona .lenis no <html>. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: clip;
 }
 
 body {
   background: var(--color-surface);
   color: var(--color-ink);
   font-family: var(--font-sans);
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: var(--color-brand-yellow);
-  color: var(--color-brand-blue-dark);
+  background: var(--color-accent-fill);
+  color: var(--color-ink);
 }
 
-/* Textura sutil de grão sobre todo o site — evita o visual "achatado" de
-   template, sem custo de imagem (SVG de ruído gerado via feTurbulence). */
+/* Grão sutil de papel sobre todo o site — tira o aspecto "achatado" de
+   template sem custo de imagem (ruído SVG via feTurbulence). */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
   z-index: 999;
   pointer-events: none;
-  opacity: 0.035;
-  mix-blend-mode: overlay;
+  opacity: 0.04;
+  mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 .font-display {
   font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
-.font-mono-label {
-  font-family: var(--font-mono);
-  letter-spacing: 0.14em;
+/* Rótulo pequeno acima de cada título de seção — condensado, versalete,
+   com um tracinho de régua antes do texto. */
+.eyebrow {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 2rem;
+  height: 1px;
+  background: currentColor;
+}
+
+/* Traço de marca-texto atrás de uma palavra do título (decorativo). */
+.swipe {
+  position: relative;
+  isolation: isolate;
+  white-space: nowrap;
+}
+
+.swipe::after {
+  content: '';
+  position: absolute;
+  left: -0.06em;
+  right: -0.06em;
+  bottom: 0.12em;
+  height: 0.34em;
+  background: var(--color-highlight);
+  z-index: -1;
+  transform: skew(-12deg);
+  transform-origin: left;
 }
 
 .no-scrollbar {
@@ -69,12 +131,11 @@ body::after {
   display: none;
 }
 
-/* Faixa de texto em loop contínuo (marquee). Puramente em CSS para não
-   depender de JS rodando a cada frame; pausa quando reduced-motion. */
+/* Faixa de texto em loop contínuo (marquee), puramente em CSS. */
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee 26s linear infinite;
+  animation: marquee 32s linear infinite;
 }
 
 @keyframes marquee {
@@ -86,16 +147,6 @@ body::after {
   }
 }
 
-@keyframes blob-float {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(0, -18px, 0) scale(1.08);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -103,6 +154,10 @@ body::after {
 
   .marquee-track {
     animation: none;
+  }
+
+  .swipe::after {
+    transform: skew(-12deg);
   }
 
   *,

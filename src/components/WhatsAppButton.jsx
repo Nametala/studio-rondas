@@ -32,11 +32,11 @@ export function WhatsAppFloatButton() {
       transition={{ duration: 0.5, delay: 1.2, ease: EASE }}
       whileHover={{ scale: 1.08 }}
       whileTap={{ scale: 0.95 }}
-      className="fixed bottom-4 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-brand-green text-white shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 sm:bottom-6 sm:right-6"
+      className="fixed bottom-4 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-whatsapp text-white shadow-lg shadow-whatsapp/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:bottom-6 sm:right-6"
     >
       <span
         aria-hidden="true"
-        className="absolute inset-0 rounded-full bg-brand-green/70 motion-safe:animate-ping"
+        className="absolute inset-0 rounded-full bg-whatsapp/60 motion-safe:animate-ping"
       />
       <svg
         aria-hidden="true"

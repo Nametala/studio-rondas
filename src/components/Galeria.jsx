@@ -1,51 +1,38 @@
 import { useEffect, useRef, useState } from 'react'
-import { motion, useReducedMotion } from 'motion/react'
+import { useReducedMotion } from 'motion/react'
 import { site } from '../config/site'
 import { Reveal, SectionEyebrow, SectionHeading } from './Reveal'
 import { Icon } from './icons'
-import { useTilt } from './useTilt'
-
-const GRADIENTS = [
-  'from-brand-blue to-brand-blue-dark',
-  'from-brand-green to-brand-blue',
-  'from-brand-blue-dark to-brand-blue',
-  'from-brand-green to-brand-blue-dark',
-]
 
 function GaleriaSlide({ slide, index, total }) {
-  const tilt = useTilt(5)
-
   return (
-    <motion.div
-      ref={tilt.ref}
-      onMouseMove={tilt.onMouseMove}
-      onMouseLeave={tilt.onMouseLeave}
-      style={tilt.style}
+    <figure
       role="group"
       aria-roledescription="slide"
       aria-label={`${slide.legenda} — ${index + 1} de ${total}`}
-      className={`relative flex aspect-[4/3] w-[78%] shrink-0 snap-start flex-col justify-end overflow-hidden rounded-2xl bg-gradient-to-br p-5 text-white sm:w-[22rem] ${GRADIENTS[index % GRADIENTS.length]}`}
+      className={`relative flex aspect-[4/3] w-[80%] shrink-0 snap-start flex-col justify-end overflow-hidden rounded-2xl border border-line p-6 sm:w-[24rem] ${
+        slide.foto ? 'bg-ink-deep text-surface' : 'bg-surface-alt text-ink'
+      }`}
     >
       {slide.foto ? (
-        <img
-          src={slide.foto}
-          alt={slide.legenda}
-          className="absolute inset-0 h-full w-full object-cover"
-        />
+        <>
+          <img
+            src={slide.foto}
+            alt={slide.legenda}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-deep/70 via-transparent to-transparent"
+          />
+        </>
       ) : (
-        <Icon
-          name={slide.icone}
-          className="mb-auto mt-2 h-10 w-10 text-white/70"
-        />
+        <Icon name={slide.icone} className="mb-auto mt-1 h-10 w-10 text-accent" />
       )}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent"
-      />
-      <p className="font-display relative z-10 text-lg font-medium">
+      <figcaption className="font-display relative z-10 text-lg font-semibold">
         {slide.legenda}
-      </p>
-    </motion.div>
+      </figcaption>
+    </figure>
   )
 }
 
@@ -59,8 +46,7 @@ export function Galeria() {
 
   // Lê a posição real do scroll no DOM em vez de confiar no state `active`,
   // que pode estar desatualizado se o usuário clicar de novo antes do
-  // listener de scroll processar o clique anterior (bug: dois cliques
-  // rápidos em "próxima" recalculavam o alvo a partir do mesmo índice antigo).
+  // listener de scroll processar o clique anterior.
   function getCurrentIndex() {
     const track = trackRef.current
     if (!track) return 0
@@ -85,11 +71,7 @@ export function Galeria() {
     scrollToIndex(index)
   }
 
-  // Passo relativo (um card por vez) com wraparound nas pontas do scroll
-  // real, em vez de mirar na posição "encostada" teórica de cada índice —
-  // essa nunca é alcançável quando o conteúdo quase, mas não totalmente,
-  // ultrapassa a largura da viewport (o scroll trava mais cedo e sobra
-  // um espaço em branco enorme depois do último card).
+  // Passo relativo (um card por vez) com wraparound nas pontas do scroll real.
   function step(direction) {
     setHasInteracted(true)
     const track = trackRef.current
@@ -133,20 +115,22 @@ export function Galeria() {
   }, [prefersReducedMotion, isPaused, hasInteracted])
 
   return (
-    <section
-      id="espaco"
-      className="scroll-mt-16 px-4 py-20 sm:px-6 sm:py-28"
-    >
-      <div className="mx-auto max-w-4xl">
-        <SectionEyebrow>04 · Espaço</SectionEyebrow>
+    <section id="espaco" className="scroll-mt-20 px-5 py-24 sm:px-8 sm:py-32">
+      <div className="mx-auto max-w-6xl">
+        <SectionEyebrow>05 — Espaço</SectionEyebrow>
         <SectionHeading>
           Um ambiente sem lotação, feito para treinar de verdade.
         </SectionHeading>
+        <Reveal delay={0.1}>
+          <p className="mt-4 text-sm text-ink-muted">
+            Imagens ilustrativas — fotos reais do espaço a confirmar com o studio.
+          </p>
+        </Reveal>
       </div>
 
       <Reveal delay={0.1}>
         <div
-          className="relative mt-10"
+          className="relative mt-12"
           role="region"
           aria-roledescription="carrossel"
           aria-label="Fotos do espaço do Studio Rondas"
@@ -158,7 +142,7 @@ export function Galeria() {
           <div
             ref={trackRef}
             onPointerDown={() => setHasInteracted(true)}
-            className="no-scrollbar relative flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-4 pb-2 sm:px-[max(1rem,calc((100%-56rem)/2))]"
+            className="no-scrollbar relative flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-5 pb-2 sm:px-[max(2rem,calc((100%-72rem)/2))]"
           >
             {slides.map((slide, index) => (
               <GaleriaSlide
@@ -174,7 +158,7 @@ export function Galeria() {
             type="button"
             onClick={() => step(-1)}
             aria-label="Foto anterior"
-            className="absolute left-1 top-1/2 hidden -translate-y-1/2 items-center justify-center rounded-full bg-surface/90 p-2 text-ink shadow-md transition-opacity hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue sm:flex"
+            className="absolute left-2 top-1/2 hidden -translate-y-1/2 items-center justify-center rounded-full border border-line bg-surface/90 p-2.5 text-ink shadow-sm transition-colors hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:flex"
           >
             <span aria-hidden="true">‹</span>
           </button>
@@ -182,13 +166,13 @@ export function Galeria() {
             type="button"
             onClick={() => step(1)}
             aria-label="Próxima foto"
-            className="absolute right-1 top-1/2 hidden -translate-y-1/2 items-center justify-center rounded-full bg-surface/90 p-2 text-ink shadow-md transition-opacity hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue sm:flex"
+            className="absolute right-2 top-1/2 hidden -translate-y-1/2 items-center justify-center rounded-full border border-line bg-surface/90 p-2.5 text-ink shadow-sm transition-colors hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:flex"
           >
             <span aria-hidden="true">›</span>
           </button>
         </div>
 
-        <div className="mt-5 flex justify-center gap-1">
+        <div className="mt-6 flex justify-center gap-1.5">
           {slides.map((slide, index) => (
             <button
               key={slide.legenda}
@@ -196,12 +180,12 @@ export function Galeria() {
               onClick={() => goTo(index)}
               aria-label={`Ir para foto ${index + 1}`}
               aria-current={active === index}
-              className="flex h-6 w-6 items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
+              className="flex h-6 w-6 items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <span
                 aria-hidden="true"
                 className={`h-2 rounded-full transition-all ${
-                  active === index ? 'w-6 bg-brand-blue' : 'w-2 bg-black/15'
+                  active === index ? 'w-6 bg-accent' : 'w-2 bg-line'
                 }`}
               />
             </button>

@@ -20,20 +20,20 @@ export function Header() {
       transition={{ duration: 0.6, ease: EASE }}
       className={`fixed inset-x-0 top-0 z-40 transition-colors duration-300 ${
         scrolled
-          ? 'border-b border-black/5 bg-surface/90 backdrop-blur-md'
+          ? 'border-b border-line bg-surface/85 backdrop-blur-md'
           : 'border-b border-transparent bg-transparent'
       }`}
     >
-      <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3 sm:px-8">
         <a
           href="#topo"
           aria-label={site.nome}
-          className="flex items-center gap-2 rounded font-display text-lg font-semibold tracking-tight text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2"
+          className="flex items-center gap-2.5 rounded font-display text-lg font-semibold uppercase tracking-[0.06em] text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         >
           <Logo />
           <span className="sr-only sm:not-sr-only">{site.nome}</span>
         </a>
-        <WhatsAppLink className="inline-flex shrink-0 items-center gap-2 rounded-full bg-brand-green px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-green/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2">
+        <WhatsAppLink className="inline-flex shrink-0 items-center gap-2 rounded-full bg-whatsapp px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-whatsapp-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
           Marcar aula experimental
         </WhatsAppLink>
       </div>

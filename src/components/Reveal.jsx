@@ -14,7 +14,7 @@ export function Reveal({
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once, margin: '-80px' }}
-      transition={{ duration: 0.6, delay, ease: EASE }}
+      transition={{ duration: 0.7, delay, ease: EASE }}
       className={className}
     >
       {children}
@@ -39,12 +39,12 @@ export function RevealGroup({ children, className, stagger = 0.08 }) {
   )
 }
 
-export function RevealItem({ children, className, y = 16 }) {
+export function RevealItem({ children, className, y = 18 }) {
   return (
     <motion.div
       variants={{
         hidden: { opacity: 0, y },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE } },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
       }}
       className={className}
     >
@@ -53,24 +53,26 @@ export function RevealItem({ children, className, y = 16 }) {
   )
 }
 
-// Rótulo pequeno em mono acima do título de cada seção (ex: "02 · Modalidades").
+// Rótulo condensado em versalete acima do título de cada seção,
+// com um tracinho de régua antes do texto (classe .eyebrow no CSS).
 export function SectionEyebrow({ children, delay = 0 }) {
   return (
     <Reveal delay={delay}>
-      <span className="font-mono-label text-sm text-brand-green">
-        {children}
-      </span>
+      <span className="eyebrow text-accent">{children}</span>
     </Reveal>
   )
 }
 
-// Título h2 padrão de seção. `className` permite ajustar margem/largura
-// quando o layout da seção exige (ex.: sem mt-3 quando já está numa grid).
-export function SectionHeading({ children, delay = 0.05, className = 'mt-3 max-w-lg' }) {
+// Título h2 padrão de seção — condensado, grande, tinta.
+export function SectionHeading({
+  children,
+  delay = 0.05,
+  className = 'mt-4 max-w-xl',
+}) {
   return (
     <Reveal delay={delay}>
       <h2
-        className={`font-display text-3xl font-semibold text-balance leading-tight tracking-tight text-ink sm:text-4xl ${className}`}
+        className={`font-display text-4xl font-semibold leading-[1.0] tracking-tight text-balance text-ink sm:text-5xl ${className}`}
       >
         {children}
       </h2>

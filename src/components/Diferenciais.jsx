@@ -1,96 +1,33 @@
-import { motion } from 'motion/react'
 import { site } from '../config/site'
 import { Icon } from './icons'
 import { RevealGroup, RevealItem, SectionEyebrow, SectionHeading } from './Reveal'
-import { useTilt } from './useTilt'
-
-function IconBadge({ nome }) {
-  return (
-    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-blue text-white transition-transform duration-300 group-hover:scale-105">
-      <Icon name={nome} className="h-5 w-5" />
-    </div>
-  )
-}
-
-function DiferencialCard({ diferencial, className }) {
-  const tilt = useTilt(6)
-
-  return (
-    <motion.div
-      ref={tilt.ref}
-      onMouseMove={tilt.onMouseMove}
-      onMouseLeave={tilt.onMouseLeave}
-      style={tilt.style}
-      className={`group rounded-2xl border border-black/10 bg-surface p-6 shadow-sm transition-shadow duration-300 hover:shadow-lg ${className ?? ''}`}
-    >
-      <IconBadge nome={diferencial.icone} />
-      <h3 className="font-display mt-4 text-lg font-medium text-ink">
-        {diferencial.titulo}
-      </h3>
-      <p className="mt-1 text-sm text-ink-muted">{diferencial.descricao}</p>
-    </motion.div>
-  )
-}
-
-// Card de fechamento em largura total — evita o "buraco" vazio que sobra
-// quando o 1º card ocupa 2 colunas e restam só 3 cards num grid de 4.
-function DiferencialFeatureCard({ diferencial, className }) {
-  const tilt = useTilt(4)
-
-  return (
-    <motion.div
-      ref={tilt.ref}
-      onMouseMove={tilt.onMouseMove}
-      onMouseLeave={tilt.onMouseLeave}
-      style={tilt.style}
-      className={`group flex flex-col gap-4 rounded-2xl border border-black/10 bg-surface p-6 shadow-sm transition-shadow duration-300 hover:shadow-lg lg:flex-row lg:items-center lg:gap-6 ${className ?? ''}`}
-    >
-      <IconBadge nome={diferencial.icone} />
-      <div>
-        <h3 className="font-display text-lg font-medium text-ink">
-          {diferencial.titulo}
-        </h3>
-        <p className="mt-1 text-sm text-ink-muted">{diferencial.descricao}</p>
-      </div>
-    </motion.div>
-  )
-}
 
 export function Diferenciais() {
-  const lastIndex = site.diferenciais.length - 1
-
   return (
-    <section className="px-4 py-20 sm:px-6 sm:py-28">
-      <div className="mx-auto max-w-4xl">
-        <SectionEyebrow>Por que o Studio Rondas</SectionEyebrow>
+    <section className="scroll-mt-20 bg-surface-alt px-5 py-24 sm:px-8 sm:py-32">
+      <div className="mx-auto max-w-6xl">
+        <SectionEyebrow>02 — Por que o Studio Rondas</SectionEyebrow>
         <SectionHeading>Perto de casa, perto de você.</SectionHeading>
 
         <RevealGroup
-          className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+          className="mt-14 grid gap-px overflow-hidden rounded-3xl border border-line bg-line sm:grid-cols-2"
           stagger={0.08}
         >
-          {site.diferenciais.map((diferencial, index) => {
-            const isFeature = index === 0
-            const isClosing = index === lastIndex
-
-            return (
-              <RevealItem
-                key={diferencial.titulo}
-                className={
-                  isFeature ? 'lg:col-span-2' : isClosing ? 'lg:col-span-4' : ''
-                }
-              >
-                {isClosing ? (
-                  <DiferencialFeatureCard
-                    diferencial={diferencial}
-                    className="h-full"
-                  />
-                ) : (
-                  <DiferencialCard diferencial={diferencial} className="h-full" />
-                )}
-              </RevealItem>
-            )
-          })}
+          {site.diferenciais.map((diferencial) => (
+            <RevealItem key={diferencial.titulo} className="h-full">
+              <article className="group flex h-full flex-col gap-5 bg-surface-alt p-8 transition-colors duration-300 hover:bg-surface sm:p-10">
+                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-accent-fill/20 text-accent transition-transform duration-300 group-hover:-translate-y-0.5">
+                  <Icon name={diferencial.icone} className="h-6 w-6" />
+                </span>
+                <div>
+                  <h3 className="font-display text-2xl font-semibold text-ink">
+                    {diferencial.titulo}
+                  </h3>
+                  <p className="mt-2 text-ink-muted">{diferencial.descricao}</p>
+                </div>
+              </article>
+            </RevealItem>
+          ))}
         </RevealGroup>
       </div>
     </section>

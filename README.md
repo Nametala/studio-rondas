@@ -3,7 +3,10 @@
 Site institucional de página única para o Studio Rondas Saúde Integrada,
 academia em Belo Horizonte (musculação, pilates, personal e fisioterapia).
 
-**Stack:** React + Vite + Tailwind CSS v4 + Motion.
+**Stack:** React 19 + Vite + Tailwind CSS v4 + Motion + Lenis (smooth scroll).
+
+Direção visual em [`design-system/studio-rondas/MASTER.md`](design-system/studio-rondas/MASTER.md):
+paleta creme/tinta/âmbar, tipografia Barlow Condensed + Barlow, layout editorial.
 
 ## Rodando localmente
 

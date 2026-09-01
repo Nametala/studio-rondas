@@ -1,7 +1,7 @@
-export function Marquee({ items, className }) {
+export function Marquee({ items }) {
   return (
     <div
-      className={`overflow-hidden ${className ?? ''}`}
+      className="overflow-hidden border-y border-line bg-surface-alt py-4"
       role="presentation"
       aria-hidden="true"
     >
@@ -11,11 +11,11 @@ export function Marquee({ items, className }) {
             {items.map((item) => (
               <li
                 key={item}
-                className="font-display flex items-center whitespace-nowrap px-6 text-2xl font-medium sm:text-4xl"
+                className="font-display flex items-center whitespace-nowrap px-6 text-2xl font-semibold uppercase tracking-tight text-ink sm:text-3xl"
               >
                 {item}
-                <span className="ml-6 text-brand-yellow" aria-hidden="true">
-                  •
+                <span className="ml-6 text-accent" aria-hidden="true">
+                  ✦
                 </span>
               </li>
             ))}

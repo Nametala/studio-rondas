@@ -1,142 +1,145 @@
-import { motion, useReducedMotion } from 'motion/react'
+import { useRef } from 'react'
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from 'motion/react'
 import { site } from '../config/site'
 import { EASE } from '../lib/motion'
 import { WhatsAppLink } from './WhatsAppButton'
 
-const headline = ['Treino de perto.', 'Resultado real.']
-
-const container = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
-}
-
-const line = {
-  hidden: { opacity: 0, y: 36 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE } },
-}
+// Entrada padrão do hero — dispara assim que a seção entra em tela.
+const rise = (delay = 0) => ({
+  initial: { opacity: 0, y: 28 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.1 },
+  transition: { duration: 0.8, delay, ease: EASE },
+})
 
 export function Hero() {
   const prefersReducedMotion = useReducedMotion()
-
-  function handleSpotlight(event) {
-    if (prefersReducedMotion) return
-    const rect = event.currentTarget.getBoundingClientRect()
-    event.currentTarget.style.setProperty('--spot-x', `${event.clientX - rect.left}px`)
-    event.currentTarget.style.setProperty('--spot-y', `${event.clientY - rect.top}px`)
-  }
+  const ref = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start start', 'end start'],
+  })
+  const arcY = useTransform(scrollYProgress, [0, 1], [0, 120])
+  const nota = site.avaliacoes.nota.toLocaleString('pt-BR', {
+    minimumFractionDigits: 1,
+  })
 
   return (
     <section
       id="topo"
-      onMouseMove={handleSpotlight}
-      className="relative scroll-mt-16 overflow-hidden bg-brand-blue px-4 pb-20 pt-32 text-white sm:px-6 sm:pb-28 sm:pt-40"
+      ref={ref}
+      className="relative scroll-mt-20 overflow-hidden bg-surface px-5 pb-20 pt-32 sm:px-8 sm:pb-28 sm:pt-40"
     >
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-brand-green/30 blur-3xl motion-safe:animate-[blob-float_9s_ease-in-out_infinite]" />
-        <div className="absolute -bottom-32 -right-16 h-96 w-96 rounded-full bg-brand-yellow/20 blur-3xl motion-safe:animate-[blob-float_11s_ease-in-out_infinite_-3s]" />
-        <div className="absolute left-1/3 top-1/2 h-64 w-64 rounded-full bg-white/10 blur-3xl motion-safe:animate-[blob-float_13s_ease-in-out_infinite_-6s]" />
-        {!prefersReducedMotion && (
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                'radial-gradient(480px circle at var(--spot-x, 50%) var(--spot-y, 20%), rgba(242,194,48,0.12), transparent 60%)',
-            }}
-          />
-        )}
-      </div>
-
+      {/* Arco âmbar decorativo, com parallax sutil. */}
       <motion.div
-        initial={{ opacity: 0, y: 20, scale: 0.9 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.6, delay: 1.15, ease: EASE }}
-        className="absolute right-4 top-24 z-10 hidden items-center gap-3 rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-white shadow-lg backdrop-blur-md sm:right-8 sm:top-28 sm:flex"
+        aria-hidden="true"
+        style={prefersReducedMotion ? undefined : { y: arcY }}
+        className="pointer-events-none absolute -right-40 -top-24 h-[38rem] w-[38rem] rounded-full border border-accent-fill/40 sm:-right-24"
       >
-        <span aria-hidden="true" className="text-2xl leading-none text-brand-yellow">
-          ★
-        </span>
-        <div className="text-left leading-tight">
-          <p className="font-display text-lg font-semibold">
-            {site.avaliacoes.nota.toLocaleString('pt-BR', { minimumFractionDigits: 1 })}
-          </p>
-          <p className="text-xs text-white/70">{site.avaliacoes.total} avaliações</p>
-        </div>
+        <div className="absolute inset-10 rounded-full border border-line" />
+        <div className="absolute inset-24 rounded-full border border-accent-fill/25" />
       </motion.div>
 
-      <div className="relative mx-auto max-w-3xl text-center">
+      <div className="relative mx-auto max-w-6xl">
         <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: EASE }}
-          className="font-mono-label text-xs text-brand-yellow sm:text-sm"
+          {...rise(0)}
+          className="font-display text-sm font-semibold uppercase tracking-[0.22em] text-accent"
         >
-          Studio Rondas · Funcionários, Belo Horizonte
+          {site.nome} — Funcionários, Belo Horizonte
         </motion.p>
 
-        <motion.h1
-          variants={container}
-          initial="hidden"
-          animate="visible"
-          className="font-display mt-5 text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl"
-        >
-          {headline.map((text) => (
-            <motion.span key={text} variants={line} className="block">
-              {text}
+        <h1 className="font-display mt-6 max-w-4xl text-[3.25rem] font-semibold uppercase leading-[0.92] tracking-[-0.01em] text-ink sm:text-8xl">
+          <span className="block overflow-hidden pb-[0.08em]">
+            <motion.span {...rise(0.12)} className="block">
+              Treino <span className="swipe text-ink">de perto</span>.
             </motion.span>
-          ))}
-        </motion.h1>
+          </span>
+          <span className="block overflow-hidden pb-[0.08em]">
+            <motion.span {...rise(0.22)} className="block text-ink-muted">
+              Resultado real.
+            </motion.span>
+          </span>
+        </h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.55, ease: EASE }}
-          className="mx-auto mt-6 max-w-xl text-base text-white/80 sm:text-lg"
-        >
-          Atendimento personalizado, turma reduzida e acompanhamento de perto
-          — musculação, pilates, personal e fisioterapia em um só lugar.
-        </motion.p>
+        <div className="mt-10 grid gap-10 sm:grid-cols-[1.4fr_1fr] sm:items-end">
+          <motion.div {...rise(0.36)}>
+            <p className="max-w-md text-lg text-ink-muted">
+              Turma reduzida e acompanhamento próximo em cada treino —
+              musculação, pilates, personal e fisioterapia sob o mesmo teto.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <WhatsAppLink className="group inline-flex items-center justify-center gap-2 rounded-full bg-accent-fill px-6 py-3.5 text-base font-semibold text-ink transition-colors hover:bg-ink hover:text-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface">
+                Marcar aula experimental
+                <span
+                  aria-hidden="true"
+                  className="transition-transform group-hover:translate-x-1"
+                >
+                  →
+                </span>
+              </WhatsAppLink>
+              <a
+                href="#modalidades"
+                className="inline-flex items-center justify-center rounded-full border border-ink/25 px-6 py-3.5 text-base font-medium text-ink transition-colors hover:border-ink hover:bg-ink hover:text-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              >
+                Ver modalidades
+              </a>
+            </div>
+          </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.7, ease: EASE }}
-          className="mt-9 flex flex-col items-center gap-3 sm:flex-row sm:justify-center"
-        >
-          <WhatsAppLink className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-yellow px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-blue sm:w-auto">
-            Marcar aula experimental
-            <span
-              aria-hidden="true"
-              className="transition-transform group-hover:translate-x-1"
-            >
-              →
-            </span>
-          </WhatsAppLink>
-          <a
-            href="#modalidades"
-            className="inline-flex w-full items-center justify-center rounded-full border border-white/40 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-blue sm:w-auto"
+          <motion.div
+            {...rise(0.46)}
+            className="flex items-center gap-4 border-t border-line pt-5 sm:justify-self-end sm:border-l sm:border-t-0 sm:pl-6 sm:pt-0"
           >
-            Conheça as modalidades
-          </a>
-        </motion.div>
+            <span className="font-display text-6xl font-semibold leading-none text-ink">
+              {nota}
+            </span>
+            <div className="leading-tight">
+              <div aria-hidden="true" className="flex gap-0.5 text-accent-fill">
+                {[0, 1, 2, 3, 4].map((i) => (
+                  <StarIcon key={i} />
+                ))}
+              </div>
+              <p className="mt-1 text-sm text-ink-muted">
+                {site.avaliacoes.total} avaliações no Google
+              </p>
+            </div>
+          </motion.div>
+        </div>
       </div>
 
       <motion.a
         href="#sobre"
         aria-label="Rolar para a próxima seção"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 1, ease: EASE }}
-        className="absolute inset-x-0 bottom-6 mx-auto flex w-fit items-center justify-center rounded-full text-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+        {...rise(0.7)}
+        className="relative mx-auto mt-16 flex w-fit items-center gap-2 rounded-full text-sm font-medium uppercase tracking-[0.16em] text-ink-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:mt-20"
       >
         <motion.span
           aria-hidden="true"
-          animate={{ y: [0, 6, 0] }}
+          animate={{ y: [0, 5, 0] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-          className="text-xl"
         >
           ↓
         </motion.span>
+        Continuar
       </motion.a>
     </section>
+  )
+}
+
+function StarIcon() {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      className="h-4 w-4"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 15l-5.2 2.7 1-5.8L1.5 7.7l5.9-.9L10 1.5z" />
+    </svg>
   )
 }
