@@ -219,6 +219,18 @@ desligado sob `prefers-reduced-motion`.
   `origin-left`. Anima só `transform` — nada de `width`/`height`, que forçam layout.
 - `<MotionConfig reducedMotion="user">` em `main.jsx`. Efeitos em CSS puro carregam
   `motion-reduce:` explicitamente, já que o MotionConfig não os alcança.
+- **Abertura com o logo** (`LogoReveal`): cortina ultramarina com o disco amarelo,
+  o "R" verde, o brilho e o wordmark, ~1,9s no total. Três travas obrigatórias, porque
+  intro mal calibrada é dos jeitos mais fáceis de piorar um site: roda **uma vez por
+  sessão** (`sessionStorage`), **não existe** sob `prefers-reduced-motion`, e é uma
+  camada por cima — a página renderiza atrás, então a intro não atrasa o conteúdo nem
+  o carregamento da foto do hero. A camada é `pointer-events-none`: mesmo se algo
+  travar, nada fica bloqueado. Não aumentar a duração e não fazer a intro tocar em
+  toda navegação.
+- **SVG animado**: nunca colocar `transform` como atributo e `scale` do Motion no mesmo
+  elemento — o transform CSS sobrescreve o atributo e o desenho perde posição e escala.
+  O posicionamento vai num `<g>` externo e a animação no filho, com
+  `transform-box: fill-box` para escalar em torno do próprio centro.
 - Um só efeito de scroll pesado por página (o parallax do hero). Não empilhar seções
   fixadas: brigam com o scroll nativo e pioram muito o mobile.
 
