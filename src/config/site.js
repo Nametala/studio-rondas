@@ -2,9 +2,22 @@
 // Edite os valores abaixo para atualizar conteúdo, contato e equipe sem mexer em componentes.
 // Campos marcados "PLACEHOLDER" precisam de confirmação do cliente antes da publicação final.
 
+// Monta a URL de uma foto do Unsplash já recortada e otimizada pelo CDN deles.
+// `id` é o identificador estável da foto (photo-XXXXXXXXXXXXX-XXXXXXXXXXXX), então
+// a imagem nunca muda — diferente de serviço que sorteia foto a cada requisição.
+// Todas as fotos usadas aqui estão sob a Unsplash License, que permite uso
+// comercial sem atribuição. Ainda assim, são provisórias: o objetivo é o cliente
+// enxergar o site pronto, e devem sair quando chegarem as fotos do studio.
+const foto = (id, w, h) =>
+  `https://images.unsplash.com/${id}?auto=format&fit=crop&q=75&w=${w}&h=${h}`
+
 export const site = {
   nome: 'Studio Rondas',
   nomeCompleto: 'Studio Rondas Saúde Integrada',
+
+  // Foto de abertura — interior de academia com luz fria, que conversa com o
+  // ultramarino da marca. PLACEHOLDER, como as demais.
+  heroFoto: foto('photo-1693214674451-2111f7690877', 900, 1200),
 
   whatsapp: {
     // PLACEHOLDER — substituir pelo número real do WhatsApp do studio (formato: 55DDDNUMERO)
@@ -100,52 +113,51 @@ export const site = {
   ],
 
   // PLACEHOLDER — confirmar nomes e funções com o cliente antes de publicar.
-  // As imagens abaixo são composições genéricas geradas na paleta da marca
-  // (public/ilustra/), só para preencher o site na apresentação de
-  // venda — trocar por fotos reais antes de publicar.
+  // Fotos de banco (Unsplash, licença de uso comercial livre), escolhidas para
+  // o site parecer pronto na apresentação de venda. Trocar pelas fotos reais da
+  // equipe antes de publicar: basta substituir a URL em `foto`.
   equipe: [
     {
       nome: 'Jackson',
       funcao: 'Personal de musculação',
-      foto: '/ilustra/equipe-1.svg',
+      foto: foto('photo-1585892478508-130c50eb7a69', 560, 700),
     },
     {
       nome: 'João',
       funcao: 'Professor',
-      foto: '/ilustra/equipe-2.svg',
+      foto: foto('photo-1577744168855-0391d2ed2b3a', 560, 700),
     },
     {
       nome: 'Hugo',
       funcao: 'Professor',
-      foto: '/ilustra/equipe-3.svg',
+      foto: foto('photo-1652400744403-8f29705bd6a5', 560, 700),
     },
   ],
 
-  // PLACEHOLDER — trocar por fotos reais do espaço assim que o cliente
+  // PLACEHOLDER — trocar pelas fotos reais do espaço assim que o cliente
   // confirmar o uso de imagens próprias (ou do Instagram @studiorondas).
-  // As imagens abaixo são composições genéricas geradas na paleta da marca
-  // (public/ilustra/), só para preencher o site na apresentação de
-  // venda — trocar por fotos reais antes de publicar.
+  // Também são fotos de banco, escolhidas por combinarem com a base escura
+  // do site e por mostrarem cada modalidade de forma reconhecível.
   galeria: [
     {
       icone: 'dumbbell',
       legenda: 'Salão de musculação',
-      foto: '/ilustra/musculacao.svg',
+      foto: foto('photo-1597076537061-a6b58163aa45', 960, 720),
     },
     {
       icone: 'pilates',
       legenda: 'Sala de pilates',
-      foto: '/ilustra/pilates.svg',
+      foto: foto('photo-1747240549807-fc3962949818', 960, 720),
     },
     {
       icone: 'personal',
       legenda: 'Atendimento personalizado',
-      foto: '/ilustra/atendimento.svg',
+      foto: foto('photo-1758875569414-120ebc62ada3', 960, 720),
     },
     {
       icone: 'espaco',
       legenda: 'Recepção e estrutura',
-      foto: '/ilustra/recepcao.svg',
+      foto: foto('photo-1593079831268-3381b0db4a77', 960, 720),
     },
   ],
 };

@@ -1,12 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  /* ── Paleta: extraída do Instagram @studiorondas ──────────────────────────
-     Amostragem de pixels de 48 posts + do avatar (logo). Duas cores carregam
-     a marca: o ultramarino dos fundos de post e o lima dos blocos de
-     destaque; o amarelo e o verde vêm do próprio logo (disco amarelo, "R"
-     verde). Todos os pares de texto abaixo passam WCAG AA (≥4.5:1) —
-     ver design-system/studio-rondas/MASTER.md. */
+  /* ── Paleta: extraída do Instagram @studiorondas, aplicada em base escura ──
+     As cores de marca vêm de amostragem de pixels de 48 posts + do avatar.
+     A base é quase-preta: o site é de academia e as fotos do espaço são
+     escuras — fundo claro brigava com elas. Todos os pares de texto abaixo
+     passam WCAG AA (≥4.5:1) — ver design-system/studio-rondas/MASTER.md. */
 
   /* Cores de marca (valores medidos) */
   --color-brand-blue: #0b1a83;     /* ultramarino — fundo dominante dos posts */
@@ -15,29 +14,29 @@
   --color-brand-green: #0f7833;    /* verde do "R" do logo */
 
   /* Superfícies */
-  --color-surface: #ffffff;        /* branco — fundo principal */
-  --color-surface-alt: #f1eee8;    /* off-white morno — seções alternadas */
-  --color-ink-deep: #0b1a83;       /* ultramarino — seção de respiro (punctuation) */
+  --color-surface: #0e1014;        /* quase-preto — fundo principal */
+  --color-surface-alt: #16191f;    /* um passo acima — seções alternadas */
+  --color-ink-deep: #0b1a83;       /* ultramarino — seção de respiro */
 
   /* Texto e fios */
-  --color-ink: #12121a;            /* texto principal — 18.6:1 sobre branco */
-  --color-ink-muted: #55555f;      /* texto secundário — 7.4:1 sobre branco */
-  --color-line: #dedce4;           /* fios/hairlines */
+  --color-ink: #f3f4f6;            /* texto principal — 17.3:1 sobre o fundo */
+  --color-ink-muted: #a2a7b3;      /* texto secundário — 7.9:1 */
+  --color-line: #272b34;           /* fios/hairlines */
 
   /* Acentos */
-  --color-accent: #0b1a83;         /* ultramarino — links, eyebrow — 14.1:1 */
-  --color-accent-fill: #99c10b;    /* lima de preenchimento — usar com texto tinta */
-  --color-highlight: #fdd504;      /* amarelo do logo — marca-texto e realces */
+  --color-accent: #99c10b;         /* lima — links, eyebrow, ícones — 9.1:1 */
+  --color-accent-fill: #99c10b;    /* lima de preenchimento — texto escuro */
+  --color-highlight: #fdd504;      /* amarelo do logo — realces */
 
   --color-whatsapp: #0f7833;       /* verde da marca, que também é o do WhatsApp */
   --color-whatsapp-dark: #0b6329;
 
-  --color-ring: #0b1a83;           /* foco visível */
+  --color-ring: #99c10b;           /* foco visível sobre fundo escuro */
 
-  /* Tipografia: serifa didone condensada nos títulos (como nas artes do
-     Instagram) + grotesca justa em rótulos, números e corpo de texto. */
+  /* Tipografia: serifa de peso alto nos títulos (robusta, não a didone fina
+     de antes) + grotesca justa em rótulos, números e corpo de texto. */
   --font-sans: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-display: 'Instrument Serif', 'Times New Roman', Georgia, serif;
+  --font-display: 'Fraunces', 'Georgia', 'Times New Roman', serif;
   --font-mono: ui-monospace, 'SF Mono', 'Menlo', 'Consolas', monospace;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -46,6 +45,7 @@
 html {
   scroll-behavior: smooth;
   background: var(--color-surface);
+  color-scheme: dark;
 }
 
 /* Lenis controla o scroll suave; quando ativo ele adiciona .lenis no <html>. */
@@ -73,29 +73,30 @@ body {
 
 ::selection {
   background: var(--color-highlight);
-  color: var(--color-ink);
+  color: var(--color-surface);
 }
 
 /* Grão sutil sobre todo o site — as artes do Instagram têm essa textura de
-   ruído sobre os fundos chapados; aqui ela vem por SVG (feTurbulence), sem
-   custo de imagem. */
+   ruído sobre os fundos chapados. Em base escura o `multiply` sumiria, então
+   o modo é `soft-light`, que clareia o grão em vez de escurecê-lo. */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
   z-index: 999;
   pointer-events: none;
-  opacity: 0.04;
-  mix-blend-mode: multiply;
+  opacity: 0.09;
+  mix-blend-mode: soft-light;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Títulos editoriais: Instrument Serif só existe em 400 — nunca aplicar
-   font-semibold/bold junto, senão o navegador sintetiza um falso negrito. */
+/* Títulos editoriais em Fraunces — variável, usada em peso alto para dar
+   corpo. Não aplicar font-bold junto: o peso já vem daqui. */
 .font-display {
   font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: -0.005em;
+  font-weight: 700;
+  font-variation-settings: 'SOFT' 0, 'WONK' 0, 'opsz' 120;
+  letter-spacing: -0.015em;
 }
 
 /* Rótulo pequeno acima de cada título de seção. Nas artes do Instagram esses
@@ -123,16 +124,16 @@ body::after {
    deles (a palavra "Pilates" dentro de um retângulo ultramarino). */
 .swipe {
   background: var(--color-brand-blue);
-  color: var(--color-surface);
+  color: var(--color-ink);
   padding: 0.02em 0.16em 0.08em;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
 
-/* Variante amarela do mesmo bloco, com texto tinta. */
+/* Variante amarela do mesmo bloco, com texto escuro. */
 .swipe-alt {
   background: var(--color-brand-yellow);
-  color: var(--color-ink);
+  color: var(--color-surface);
   padding: 0.02em 0.16em 0.08em;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;

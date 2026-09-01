@@ -52,7 +52,7 @@ export function Hero() {
             className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"
           >
             <Magnetic className="w-full sm:w-auto">
-              <WhatsAppLink className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent-fill px-7 py-4 text-base font-semibold text-ink transition-colors duration-200 hover:bg-ink hover:text-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface sm:w-auto">
+              <WhatsAppLink className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent-fill px-7 py-4 text-base font-semibold text-surface transition-colors duration-200 hover:bg-ink hover:text-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface sm:w-auto">
                 Marcar aula experimental
                 <span
                   aria-hidden="true"
