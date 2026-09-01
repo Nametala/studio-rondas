@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  /* ── Paleta: extraída do Instagram @studiorondas, aplicada em base escura ──
-     As cores de marca vêm de amostragem de pixels de 48 posts + do avatar.
-     A base é um carvão morno, não preto: preto puro deixava a página com
-     aparência de template escuro genérico, e achatava a fotografia. Todos os pares de texto abaixo
-     passam WCAG AA (≥4.5:1) — ver design-system/studio-rondas/MASTER.md. */
+  /* ── Paleta: extraída do Instagram @studiorondas ───────────────────────────
+     Amostragem de pixels de 48 posts + do avatar. O perfil deles é claro e
+     morno, pontuado por blocos chapados de ultramarino e lima — não é escuro.
+     O "papel" das artes mediu #e2ddd8 (H30, S14%, L87%); a base do site é uma
+     versão um pouco mais clara dele, para grandes áreas de texto respirarem.
+     Todos os pares abaixo passam WCAG AA (≥4.5:1). */
 
   /* Cores de marca (valores medidos) */
   --color-brand-blue: #0b1a83;     /* ultramarino — fundo dominante dos posts */
@@ -14,27 +15,26 @@
   --color-brand-green: #0f7833;    /* verde do "R" do logo */
 
   /* Superfícies */
-  --color-surface: #1a1d24;        /* carvão morno — fundo principal */
-  --color-surface-alt: #232833;    /* um passo acima — seções alternadas */
-  --color-ink-deep: #0b1a83;       /* ultramarino — seção de respiro */
+  --color-surface: #f4f1eb;        /* papel morno — fundo principal */
+  --color-surface-alt: #e7e1d6;    /* papel mais fechado — seções alternadas */
+  --color-ink-deep: #0b1a83;       /* ultramarino — seção chapada de marca */
 
   /* Texto e fios */
-  --color-ink: #f4f4f7;            /* texto principal — 15.4:1 sobre o fundo */
-  --color-ink-muted: #aeb3c0;      /* texto secundário — 8.0:1 */
-  --color-line: #343a47;           /* fios/hairlines */
+  --color-ink: #1b1a17;            /* texto principal — 15,4:1 sobre o papel */
+  --color-ink-muted: #5b5850;      /* texto secundário — 6,3:1 */
+  --color-line: #d9d3c7;           /* fios/hairlines */
 
   /* Acentos */
-  --color-accent: #a9d117;         /* lima clareada para texto — 9.5:1 */
-  --color-accent-fill: #99c10b;    /* lima de preenchimento — texto escuro */
+  --color-accent: #0b1a83;         /* ultramarino — links, eyebrow — 12,5:1 */
+  --color-accent-fill: #99c10b;    /* lima de preenchimento — texto tinta */
   --color-highlight: #fdd504;      /* amarelo do logo — realces */
 
   --color-whatsapp: #0f7833;       /* verde da marca, que também é o do WhatsApp */
   --color-whatsapp-dark: #0b6329;
 
-  --color-ring: #a9d117;           /* foco visível sobre fundo escuro */
+  --color-ring: #0b1a83;           /* foco visível sobre o papel */
 
-  /* Tipografia: serifa de peso alto nos títulos (robusta, não a didone fina
-     de antes) + grotesca justa em rótulos, números e corpo de texto. */
+  /* Tipografia: serifa de peso alto nos títulos + grotesca justa no resto. */
   --font-sans: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-display: 'Fraunces', 'Georgia', 'Times New Roman', serif;
   --font-mono: ui-monospace, 'SF Mono', 'Menlo', 'Consolas', monospace;
@@ -45,7 +45,7 @@
 html {
   scroll-behavior: smooth;
   background: var(--color-surface);
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 /* Lenis controla o scroll suave; quando ativo ele adiciona .lenis no <html>. */
@@ -73,20 +73,19 @@ body {
 
 ::selection {
   background: var(--color-highlight);
-  color: var(--color-surface);
+  color: var(--color-ink);
 }
 
 /* Grão sutil sobre todo o site — as artes do Instagram têm essa textura de
-   ruído sobre os fundos chapados. Em base escura o `multiply` sumiria, então
-   o modo é `soft-light`, que clareia o grão em vez de escurecê-lo. */
+   ruído sobre os fundos chapados. Em base clara o `multiply` é o modo certo. */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
   z-index: 999;
   pointer-events: none;
-  opacity: 0.09;
-  mix-blend-mode: soft-light;
+  opacity: 0.045;
+  mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -118,25 +117,6 @@ body::after {
   width: 2rem;
   height: 1px;
   background: currentColor;
-}
-
-/* Bloco chapado atrás de uma palavra do título — é a assinatura das artes
-   deles (a palavra "Pilates" dentro de um retângulo ultramarino). */
-.swipe {
-  background: var(--color-brand-blue);
-  color: var(--color-ink);
-  padding: 0.02em 0.16em 0.08em;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
-}
-
-/* Variante amarela do mesmo bloco, com texto escuro. */
-.swipe-alt {
-  background: var(--color-brand-yellow);
-  color: var(--color-surface);
-  padding: 0.02em 0.16em 0.08em;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
 }
 
 .no-scrollbar {

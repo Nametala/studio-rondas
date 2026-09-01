@@ -6,10 +6,9 @@
 
 **Projeto:** Studio Rondas Saúde Integrada
 **Stack:** React 19 + Vite + Tailwind CSS v4 (`@theme` em `src/index.css`) + Motion + Lenis (smooth scroll)
-**Direção:** "Academia editorial em base escura" — fundo quase-preto, fotografia real do
-espaço, ultramarino e lima da marca como acentos, serifa de peso alto nos títulos.
-A base escura não é estética gratuita: as fotos de academia são escuras e de baixa
-luz, e um fundo claro brigava com todas elas.
+**Direção:** "Papel morno com blocos de marca" — a base é o off-white quente das
+artes deles, e a identidade entra em blocos chapados de ultramarino e lima ocupando
+seções inteiras, como nos posts. Fotografia real do espaço. Serifa de peso alto.
 **Dials:** Variance 6/10 · Motion 7/10 · Density 4/10
 
 ---
@@ -40,47 +39,54 @@ passam WCAG AA (≥4.5:1).
 
 | Papel | Hex | Token | Uso |
 |------|-----|-------|-----|
-| Carvão morno | `#1a1d24` | `--color-surface` | Fundo principal |
-| Um passo acima | `#232833` | `--color-surface-alt` | Seções alternadas, cards |
-| Ultramarino | `#0b1a83` | `--color-ink-deep` | Seção chapada de respiro (Prova Social) |
-| Texto claro | `#f4f4f7` | `--color-ink` | Texto principal — 15,4:1 sobre o fundo |
-| Texto suave | `#aeb3c0` | `--color-ink-muted` | Texto secundário — 8,0:1 |
-| Fio / hairline | `#343a47` | `--color-line` | Bordas e divisórias |
-| Lima clara (texto) | `#a9d117` | `--color-accent` | Links, eyebrow, ícones — 9,5:1 |
-| Lima preenchimento | `#99c10b` | `--color-accent-fill` | Botões — SEMPRE com texto escuro |
-| Amarelo | `#fdd504` | `--color-highlight` | `.swipe-alt`, realces, `::selection` |
+| Papel morno | `#f4f1eb` | `--color-surface` | Fundo principal |
+| Papel fechado | `#e7e1d6` | `--color-surface-alt` | Seções alternadas, cards |
+| Ultramarino | `#0b1a83` | `--color-ink-deep` | Seção chapada de marca (Prova Social) |
+| Tinta | `#1b1a17` | `--color-ink` | Texto principal — 15,4:1 sobre o papel |
+| Tinta suave | `#5b5850` | `--color-ink-muted` | Texto secundário — 6,3:1 |
+| Fio / hairline | `#d9d3c7` | `--color-line` | Bordas e divisórias |
+| Ultramarino (texto) | `#0b1a83` | `--color-accent` | Links, eyebrow, ícones — 12,5:1 |
+| Lima | `#99c10b` | `--color-accent-fill` | Botões e a seção chapada de Diferenciais |
+| Amarelo | `#fdd504` | `--color-highlight` | Realces, `::selection` |
 | Verde WhatsApp | `#0f7833` | `--color-whatsapp` | CTA de WhatsApp — 5,6:1 com branco |
 | Verde WhatsApp escuro | `#0b6329` | `--color-whatsapp-dark` | Hover do CTA |
-| Anel de foco | `#a9d117` | `--color-ring` | `focus-visible:ring-ring` |
+| Anel de foco | `#0b1a83` | `--color-ring` | `focus-visible:ring-ring` |
 
-**A base é carvão, não preto.** Um `#0e1014` anterior deixava a página com cara de
-template escuro genérico e achatava a fotografia. O `#1a1d24` tem 2,4x a luminância
-daquele e continua escuro o bastante para a foto mandar. Não escurecer de volta.
+**A base é papel morno, não branco nem escuro.** O `#f4f1eb` deriva do `#e2ddd8`
+medido nas artes claras deles (H30, S14%, L87%), um pouco clareado para grandes áreas
+de texto respirarem. Duas tentativas anteriores erraram a mão: branco puro brigava com
+a fotografia, e um quase-preto `#0e1014` saiu da personalidade da marca — o perfil deles
+é claro e quente, com a cor entrando em blocos, não no fundo. Não escurecer a base de
+novo: se faltar peso, aumentar a presença dos blocos de ultramarino e lima.
 
 Os quatro hexes de marca também existem crus, para SVG e casos pontuais:
 `--color-brand-blue`, `--color-brand-lime`, `--color-brand-yellow`, `--color-brand-green`.
 
 ### Regras de ouro
 
-1. **Lima e amarelo carregam `text-surface` (escuro), nunca `text-ink`.** Texto claro
-   sobre lima dá 1,9:1 — reprova feio. Como o fundo do site é escuro, `text-surface`
-   é justamente a cor escura: em botão lima ela é a escolha certa.
-   Vale para o estado de hover também — se o hover troca o fundo, o texto tem que trocar junto.
-2. **Ultramarino e verde carregam `text-ink` (claro).** 12,8:1 e 5,6:1.
-3. **Verde é exclusivo do WhatsApp** na interface — fora isso ele só aparece no logo.
-4. **Lima é o acento único** de texto e ícone. Não introduzir uma quinta cor.
+1. **Lima e amarelo carregam `text-ink` (a tinta escura), nunca texto claro.** Texto
+   claro sobre lima dá 1,9:1. Vale para o hover também: se o hover troca o fundo, o
+   texto tem que trocar junto.
+2. **Na seção chapada de lima, todo texto é `text-ink` cheio — nada de `text-ink-muted`**,
+   que ali dá 3,4:1 e reprova. A hierarquia vem do tamanho, não da opacidade.
+3. **Ultramarino carrega `text-surface` (o papel).** 12,5:1.
+4. **Verde é exclusivo do WhatsApp** na interface — fora isso ele só aparece no logo.
+5. **A marca aparece em bloco, não em respingo.** Duas seções inteiras chapadas
+   (Diferenciais em lima, Prova Social em ultramarino) é o que faz a página parecer
+   deles. Não reduzir isso a detalhes de acento.
 
 ### Contrastes verificados
 
 | Par | Ratio |
 |-----|------:|
-| Texto claro sobre o fundo | 15,4:1 |
-| Texto suave sobre o fundo | 8,0:1 |
-| Lima sobre o fundo (link/eyebrow) | 9,5:1 |
-| Texto escuro sobre lima (botão) | 8,0:1 |
-| Texto escuro sobre amarelo | 11,8:1 |
-| Texto claro sobre ultramarino | 12,8:1 |
+| Tinta sobre o papel | 15,4:1 |
+| Tinta suave sobre o papel | 6,3:1 |
+| Ultramarino sobre o papel (link/eyebrow) | 12,5:1 |
+| Tinta sobre lima (botão e seção) | 8,3:1 |
+| Tinta sobre amarelo | 12,2:1 |
+| Papel sobre ultramarino (seção) | 12,5:1 |
 | Lima sobre ultramarino | 6,7:1 |
+| Ultramarino sobre lima | 6,7:1 |
 | Branco sobre verde WhatsApp | 5,6:1 |
 
 ---
@@ -122,9 +128,11 @@ apontado numa revisão como "cara de IA":
 - **Mono:** stack de sistema — só índices numéricos.
 - Carregadas via `<link>` em `index.html`.
 
-Utilities de apoio em `src/index.css`: `.font-display`, `.eyebrow`, `.swipe` (bloco
-ultramarino com texto claro, a assinatura das artes deles) e `.swipe-alt` (a mesma
-caixa em amarelo com texto escuro).
+Utilities de apoio em `src/index.css`: `.font-display` e `.eyebrow`.
+
+O bloco de marca-texto atrás de uma palavra do título (`.swipe`) **foi removido a pedido**.
+Para destacar uma palavra no título, colorir em ultramarino (`text-accent`) — é mais
+limpo e deixa a marca aparecer sem a caixa.
 
 O asterisco de oito pontas (✷) é motivo recorrente do perfil: aparece no logo, no selo
 sobre a foto do hero e como separador da faixa marquee.
@@ -144,8 +152,9 @@ obrigatória) e estão centralizadas em `src/config/site.js`, montadas pelo help
 que fixa o recorte e a otimização no CDN. O `id` é estável, então a imagem nunca muda.
 
 São **provisórias**: existem para a apresentação de venda e saem quando chegarem as fotos
-do studio — basta trocar a URL em `foto`. Critério ao escolher: cena escura ou de baixa luz
-(para casar com a base), modalidade reconhecível de imediato, e nada de close genérico.
+do studio — basta trocar a URL em `foto`. Critério ao escolher: modalidade reconhecível de
+imediato, cena com profundidade (não close genérico), e imagem com contraste próprio, já
+que sobre o papel claro ela precisa se sustentar sozinha.
 
 ---
 

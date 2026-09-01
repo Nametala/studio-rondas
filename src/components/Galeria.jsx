@@ -11,7 +11,7 @@ function GaleriaSlide({ slide, index, total }) {
       aria-roledescription="slide"
       aria-label={`${slide.legenda} — ${index + 1} de ${total}`}
       className={`group relative flex aspect-[4/3] w-[80%] shrink-0 snap-start flex-col justify-end overflow-hidden rounded-2xl border border-line p-6 sm:w-[24rem] ${
-        slide.foto ? 'bg-ink-deep text-ink' : 'bg-surface-alt text-ink'
+        slide.foto ? 'bg-ink-deep text-surface' : 'bg-surface-alt text-ink'
       }`}
     >
       {slide.foto ? (

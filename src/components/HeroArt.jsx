@@ -44,11 +44,12 @@ export function HeroArt({ className = '' }) {
         className="absolute inset-x-0 -top-[9%] h-[118%] w-full object-cover"
       />
 
-      {/* Escurecimento na base para a composição assentar no fundo da página
-          e para o selo ter contraste garantido sobre qualquer parte da foto. */}
+      {/* Vinheta escura discreta na base, só para dar profundidade. Não usar
+          gradiente na cor do papel aqui: sobre base clara ele lava a foto
+          inteira em vez de assentá-la. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-t from-surface via-surface/25 to-transparent"
+        className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent"
       />
 
       {/* Selo de canto — ecoa os rótulos que eles usam no topo das artes. */}
@@ -59,7 +60,7 @@ export function HeroArt({ className = '' }) {
         <svg viewBox="-1 -1 2 2" className="h-3.5 w-3.5 shrink-0" aria-hidden="true">
           <path d={SPARK} fill="var(--color-brand-lime)" />
         </svg>
-        <span className="text-xs font-semibold uppercase tracking-[0.18em] text-ink">
+        <span className="text-xs font-semibold uppercase tracking-[0.18em] text-surface">
           Saúde integrada
         </span>
       </motion.div>

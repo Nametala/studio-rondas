@@ -9,7 +9,6 @@ import { Localizacao } from './components/Localizacao'
 import { ProvaSocial } from './components/ProvaSocial'
 import { Footer } from './components/Footer'
 import { WhatsAppFloatButton } from './components/WhatsAppButton'
-import { ScrollProgress } from './components/ScrollProgress'
 import { Marquee } from './components/Marquee'
 import { useSmoothScroll } from './lib/useSmoothScroll'
 import { site } from './config/site'
@@ -25,7 +24,6 @@ function App() {
       >
         Pular para o conteúdo principal
       </a>
-      <ScrollProgress />
       <Header />
       <main id="main-content">
         <Hero />

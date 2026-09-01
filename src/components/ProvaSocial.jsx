@@ -38,7 +38,7 @@ export function ProvaSocial() {
   return (
     <section
       id="avaliacoes"
-      className="scroll-mt-20 bg-ink-deep px-5 py-28 text-ink sm:px-8 sm:py-36"
+      className="scroll-mt-20 bg-ink-deep px-5 py-28 text-surface sm:px-8 sm:py-36"
     >
       <div ref={ref} className="mx-auto max-w-3xl text-center">
         <span className="eyebrow text-accent-fill">No Google</span>
@@ -63,7 +63,7 @@ export function ProvaSocial() {
                 </motion.span>
               ))}
             </div>
-            <span className="text-sm tabular-nums text-ink/70">
+            <span className="text-sm tabular-nums text-surface/70">
               {total} avaliações
             </span>
           </div>
@@ -82,7 +82,7 @@ export function ProvaSocial() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2, ease: EASE }}
-          className="font-display mx-auto mt-10 max-w-xl text-3xl italic leading-tight text-ink text-balance sm:text-4xl"
+          className="font-display mx-auto mt-10 max-w-xl text-3xl italic leading-tight text-surface text-balance sm:text-4xl"
         >
           Marque uma aula experimental e sinta a diferença de treinar de perto.
         </motion.p>
@@ -94,7 +94,7 @@ export function ProvaSocial() {
           transition={{ duration: 0.6, delay: 0.3, ease: EASE }}
           className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
         >
-          <WhatsAppLink className="group inline-flex items-center justify-center gap-2 rounded-full bg-accent-fill px-6 py-3.5 text-base font-semibold text-surface transition-colors hover:bg-surface hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-fill focus-visible:ring-offset-2 focus-visible:ring-offset-ink-deep">
+          <WhatsAppLink className="group inline-flex items-center justify-center gap-2 rounded-full bg-accent-fill px-6 py-3.5 text-base font-semibold text-ink transition-colors hover:bg-ink hover:text-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-fill focus-visible:ring-offset-2 focus-visible:ring-offset-ink-deep">
             Marcar aula experimental
             <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
               →
@@ -104,7 +104,7 @@ export function ProvaSocial() {
             href={site.endereco.mapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-full border border-ink/30 px-6 py-3.5 text-base font-medium text-ink transition-colors hover:bg-surface/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-fill focus-visible:ring-offset-2 focus-visible:ring-offset-ink-deep"
+            className="inline-flex items-center justify-center rounded-full border border-surface/30 px-6 py-3.5 text-base font-medium text-surface transition-colors hover:bg-surface/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-fill focus-visible:ring-offset-2 focus-visible:ring-offset-ink-deep"
           >
             Ver avaliações no Google
           </a>
