@@ -9,9 +9,7 @@ import { Localizacao } from './components/Localizacao'
 import { ProvaSocial } from './components/ProvaSocial'
 import { Footer } from './components/Footer'
 import { WhatsAppFloatButton } from './components/WhatsAppButton'
-import { Marquee } from './components/Marquee'
 import { useSmoothScroll } from './lib/useSmoothScroll'
-import { site } from './config/site'
 
 function App() {
   useSmoothScroll()
@@ -27,7 +25,6 @@ function App() {
       <Header />
       <main id="main-content">
         <Hero />
-        <Marquee items={site.modalidades.map((m) => m.nome)} />
         <Sobre />
         <Diferenciais />
         <Modalidades />

@@ -134,8 +134,8 @@ O bloco de marca-texto atrás de uma palavra do título (`.swipe`) **foi removid
 Para destacar uma palavra no título, colorir em ultramarino (`text-accent`) — é mais
 limpo e deixa a marca aparecer sem a caixa.
 
-O asterisco de oito pontas (✷) é motivo recorrente do perfil: aparece no logo, no selo
-sobre a foto do hero e como separador da faixa marquee.
+O asterisco de oito pontas (✷) é motivo recorrente do perfil: aparece no logo e abre a
+linha de assinatura do hero.
 
 ---
 
@@ -155,6 +155,29 @@ São **provisórias**: existem para a apresentação de venda e saem quando cheg
 do studio — basta trocar a URL em `foto`. Critério ao escolher: modalidade reconhecível de
 imediato, cena com profundidade (não close genérico), e imagem com contraste próprio, já
 que sobre o papel claro ela precisa se sustentar sozinha.
+
+---
+
+## Hero
+
+**O nome da marca é o hero.** Numa versão anterior ele era um rótulo miúdo acima de um
+slogan genérico, e o Studio Rondas ficava em segundo plano na própria página. Agora
+"STUDIO RONDAS" em Fraunces ocupa a largura inteira do container — `clamp(2.5rem, 10vw,
+8.5rem)`, que resolve para 136px em 1440 e 40px em 375, **sempre em uma linha só**.
+
+Estrutura, seguindo o padrão hero-centric (hero domina a viewport, texto mínimo):
+
+1. Linha de assinatura: ✷ + `SAÚDE INTEGRADA` + local — é a etiqueta de canto das artes
+   deles trazida para a página.
+2. O nome, gigante.
+3. Faixa de foto cinematográfica (21:9 no desktop, 16:10 no mobile), largura total.
+4. Slogan como apoio, não como manchete, com "de perto" em ultramarino.
+5. **Um único CTA primário.** O secundário é link de texto sublinhado — dois botões de
+   peso igual dividem a atenção e o padrão pede um só.
+
+Regras: o `<h1>` nunca passa de uma linha no desktop (se passar, reduzir o `vw` do clamp,
+não inserir `<br>`). Nada de selo ou etiqueta flutuando sobre a foto — foi removido a
+pedido e deixava a imagem poluída. Nada de faixa giratória (marquee) abaixo do hero.
 
 ---
 
@@ -194,7 +217,6 @@ desligado sob `prefers-reduced-motion`.
   valor final, derivado no render (sem `setState` de efeito).
 - Hover de linha/cartão: preenchimento que varre com `scale-x` a partir de
   `origin-left`. Anima só `transform` — nada de `width`/`height`, que forçam layout.
-- Marquee: CSS puro (`.marquee-track`), pausa sob reduced-motion.
 - `<MotionConfig reducedMotion="user">` em `main.jsx`. Efeitos em CSS puro carregam
   `motion-reduce:` explicitamente, já que o MotionConfig não os alcança.
 - Um só efeito de scroll pesado por página (o parallax do hero). Não empilhar seções
