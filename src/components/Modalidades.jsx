@@ -1,15 +1,14 @@
 import { site } from '../config/site'
 import { Icon } from './icons'
-import { RevealGroup, RevealItem, SectionEyebrow, SectionHeading } from './Reveal'
+import { RevealGroup, RevealItem, SectionHeading } from './Reveal'
 
 export function Modalidades() {
   return (
     <section
       id="modalidades"
-      className="scroll-mt-20 px-5 py-24 sm:px-8 sm:py-32"
+      className="scroll-mt-20 px-5 py-28 sm:px-8 sm:py-44"
     >
       <div className="mx-auto max-w-6xl">
-        <SectionEyebrow>03 — Modalidades</SectionEyebrow>
         <SectionHeading>Quatro caminhos, um só acompanhamento.</SectionHeading>
 
         <RevealGroup className="mt-14 border-t border-line" stagger={0.07}>

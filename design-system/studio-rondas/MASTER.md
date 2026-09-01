@@ -40,18 +40,22 @@ passam WCAG AA (≥4.5:1).
 
 | Papel | Hex | Token | Uso |
 |------|-----|-------|-----|
-| Quase-preto | `#0e1014` | `--color-surface` | Fundo principal |
-| Um passo acima | `#16191f` | `--color-surface-alt` | Seções alternadas, cards |
+| Carvão morno | `#1a1d24` | `--color-surface` | Fundo principal |
+| Um passo acima | `#232833` | `--color-surface-alt` | Seções alternadas, cards |
 | Ultramarino | `#0b1a83` | `--color-ink-deep` | Seção chapada de respiro (Prova Social) |
-| Texto claro | `#f3f4f6` | `--color-ink` | Texto principal — 17,3:1 sobre o fundo |
-| Texto suave | `#a2a7b3` | `--color-ink-muted` | Texto secundário — 7,9:1 |
-| Fio / hairline | `#272b34` | `--color-line` | Bordas e divisórias |
-| Lima (texto) | `#99c10b` | `--color-accent` | Links, eyebrow, ícones — 9,1:1 |
+| Texto claro | `#f4f4f7` | `--color-ink` | Texto principal — 15,4:1 sobre o fundo |
+| Texto suave | `#aeb3c0` | `--color-ink-muted` | Texto secundário — 8,0:1 |
+| Fio / hairline | `#343a47` | `--color-line` | Bordas e divisórias |
+| Lima clara (texto) | `#a9d117` | `--color-accent` | Links, eyebrow, ícones — 9,5:1 |
 | Lima preenchimento | `#99c10b` | `--color-accent-fill` | Botões — SEMPRE com texto escuro |
 | Amarelo | `#fdd504` | `--color-highlight` | `.swipe-alt`, realces, `::selection` |
 | Verde WhatsApp | `#0f7833` | `--color-whatsapp` | CTA de WhatsApp — 5,6:1 com branco |
 | Verde WhatsApp escuro | `#0b6329` | `--color-whatsapp-dark` | Hover do CTA |
-| Anel de foco | `#99c10b` | `--color-ring` | `focus-visible:ring-ring` |
+| Anel de foco | `#a9d117` | `--color-ring` | `focus-visible:ring-ring` |
+
+**A base é carvão, não preto.** Um `#0e1014` anterior deixava a página com cara de
+template escuro genérico e achatava a fotografia. O `#1a1d24` tem 2,4x a luminância
+daquele e continua escuro o bastante para a foto mandar. Não escurecer de volta.
 
 Os quatro hexes de marca também existem crus, para SVG e casos pontuais:
 `--color-brand-blue`, `--color-brand-lime`, `--color-brand-yellow`, `--color-brand-green`.
@@ -70,14 +74,39 @@ Os quatro hexes de marca também existem crus, para SVG e casos pontuais:
 
 | Par | Ratio |
 |-----|------:|
-| Texto claro sobre o fundo | 17,3:1 |
-| Texto suave sobre o fundo | 7,9:1 |
-| Lima sobre o fundo (link/eyebrow) | 9,1:1 |
-| Texto escuro sobre lima (botão) | 9,1:1 |
-| Texto escuro sobre amarelo | 13,3:1 |
+| Texto claro sobre o fundo | 15,4:1 |
+| Texto suave sobre o fundo | 8,0:1 |
+| Lima sobre o fundo (link/eyebrow) | 9,5:1 |
+| Texto escuro sobre lima (botão) | 8,0:1 |
+| Texto escuro sobre amarelo | 11,8:1 |
 | Texto claro sobre ultramarino | 12,8:1 |
 | Lima sobre ultramarino | 6,7:1 |
 | Branco sobre verde WhatsApp | 5,6:1 |
+
+---
+
+## Anti-template
+
+O que separa esta página de um layout gerado. Cada item aqui existe porque foi
+apontado numa revisão como "cara de IA":
+
+- **Nada de rótulo numerado de seção.** `01 — Sobre`, `05 — Espaço` e afins foram
+  removidos: numerar seções não ajuda ninguém a navegar e é a assinatura mais óbvia
+  de template. Sobraram três rótulos, todos com sentido próprio (`Por que o Rondas`,
+  `O espaço`, `No Google`), e quatro seções abrem direto no título.
+- **Numeração só onde enumera de verdade.** Modalidades mantém `01`–`04` porque são
+  quatro itens de uma lista; parágrafos de texto corrido não levam índice.
+- **Ritmo vertical variado.** Cada seção tem seu próprio respiro (`py-24 sm:py-36`
+  até `py-28 sm:py-44`) em vez do mesmo valor repetido — página com cadência, não
+  com régua.
+- **Layouts que não se repetem.** Sobre é assimétrica (título à esquerda, texto numa
+  coluna estreita à direita separada por fio), Modalidades é lista larga, Diferenciais
+  é grade, Galeria é carrossel. Não empilhar sete seções com a mesma estrutura de
+  "rótulo, título, conteúdo".
+- **Sem seta "Continuar" no hero.** Indicador de rolagem em página que obviamente
+  rola é ornamento vazio.
+- **O `<h1>` cabe em 2 linhas.** Se passar de 3, diminuir o corpo ou alargar o
+  container — nunca deixar virar um bloco de 5 linhas.
 
 ---
 

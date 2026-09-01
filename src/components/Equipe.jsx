@@ -1,6 +1,6 @@
 import { site } from '../config/site'
 import { Icon } from './icons'
-import { Reveal, RevealGroup, RevealItem, SectionEyebrow, SectionHeading } from './Reveal'
+import { Reveal, RevealGroup, RevealItem, SectionHeading } from './Reveal'
 
 function Avatar({ pessoa }) {
   if (pessoa.foto) {
@@ -30,10 +30,9 @@ export function Equipe() {
   return (
     <section
       id="equipe"
-      className="scroll-mt-20 bg-surface-alt px-5 py-24 sm:px-8 sm:py-32"
+      className="scroll-mt-20 bg-surface-alt px-5 py-28 sm:px-8 sm:py-40"
     >
       <div className="mx-auto max-w-6xl">
-        <SectionEyebrow>04 — Equipe</SectionEyebrow>
         <SectionHeading>Quem acompanha o seu treino.</SectionHeading>
         <Reveal delay={0.1}>
           <p className="mt-4 text-sm text-ink-muted">

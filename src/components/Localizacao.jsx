@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { site } from '../config/site'
-import { Reveal, SectionEyebrow, SectionHeading } from './Reveal'
+import { Reveal, SectionHeading } from './Reveal'
 
 export function Localizacao() {
   const [copied, setCopied] = useState(false)
@@ -23,7 +23,6 @@ export function Localizacao() {
     >
       <div className="mx-auto grid max-w-6xl gap-12 sm:grid-cols-2 sm:items-center sm:gap-16">
         <div>
-          <SectionEyebrow>06 — Localização</SectionEyebrow>
           <SectionHeading>Bairro Funcionários, fácil de chegar.</SectionHeading>
 
           <Reveal delay={0.1}>

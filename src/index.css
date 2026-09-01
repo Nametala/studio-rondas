@@ -3,8 +3,8 @@
 @theme {
   /* ── Paleta: extraída do Instagram @studiorondas, aplicada em base escura ──
      As cores de marca vêm de amostragem de pixels de 48 posts + do avatar.
-     A base é quase-preta: o site é de academia e as fotos do espaço são
-     escuras — fundo claro brigava com elas. Todos os pares de texto abaixo
+     A base é um carvão morno, não preto: preto puro deixava a página com
+     aparência de template escuro genérico, e achatava a fotografia. Todos os pares de texto abaixo
      passam WCAG AA (≥4.5:1) — ver design-system/studio-rondas/MASTER.md. */
 
   /* Cores de marca (valores medidos) */
@@ -14,24 +14,24 @@
   --color-brand-green: #0f7833;    /* verde do "R" do logo */
 
   /* Superfícies */
-  --color-surface: #0e1014;        /* quase-preto — fundo principal */
-  --color-surface-alt: #16191f;    /* um passo acima — seções alternadas */
+  --color-surface: #1a1d24;        /* carvão morno — fundo principal */
+  --color-surface-alt: #232833;    /* um passo acima — seções alternadas */
   --color-ink-deep: #0b1a83;       /* ultramarino — seção de respiro */
 
   /* Texto e fios */
-  --color-ink: #f3f4f6;            /* texto principal — 17.3:1 sobre o fundo */
-  --color-ink-muted: #a2a7b3;      /* texto secundário — 7.9:1 */
-  --color-line: #272b34;           /* fios/hairlines */
+  --color-ink: #f4f4f7;            /* texto principal — 15.4:1 sobre o fundo */
+  --color-ink-muted: #aeb3c0;      /* texto secundário — 8.0:1 */
+  --color-line: #343a47;           /* fios/hairlines */
 
   /* Acentos */
-  --color-accent: #99c10b;         /* lima — links, eyebrow, ícones — 9.1:1 */
+  --color-accent: #a9d117;         /* lima clareada para texto — 9.5:1 */
   --color-accent-fill: #99c10b;    /* lima de preenchimento — texto escuro */
   --color-highlight: #fdd504;      /* amarelo do logo — realces */
 
   --color-whatsapp: #0f7833;       /* verde da marca, que também é o do WhatsApp */
   --color-whatsapp-dark: #0b6329;
 
-  --color-ring: #99c10b;           /* foco visível sobre fundo escuro */
+  --color-ring: #a9d117;           /* foco visível sobre fundo escuro */
 
   /* Tipografia: serifa de peso alto nos títulos (robusta, não a didone fina
      de antes) + grotesca justa em rótulos, números e corpo de texto. */

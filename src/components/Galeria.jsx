@@ -115,9 +115,9 @@ export function Galeria() {
   }, [prefersReducedMotion, isPaused, hasInteracted])
 
   return (
-    <section id="espaco" className="scroll-mt-20 px-5 py-24 sm:px-8 sm:py-32">
+    <section id="espaco" className="scroll-mt-20 px-5 py-28 sm:px-8 sm:py-44">
       <div className="mx-auto max-w-6xl">
-        <SectionEyebrow>05 — Espaço</SectionEyebrow>
+        <SectionEyebrow>O espaço</SectionEyebrow>
         <SectionHeading>
           Um ambiente sem lotação, feito para treinar de verdade.
         </SectionHeading>

@@ -41,7 +41,7 @@ export function ProvaSocial() {
       className="scroll-mt-20 bg-ink-deep px-5 py-28 text-ink sm:px-8 sm:py-36"
     >
       <div ref={ref} className="mx-auto max-w-3xl text-center">
-        <span className="eyebrow text-accent-fill">07 — Avaliações</span>
+        <span className="eyebrow text-accent-fill">No Google</span>
 
         <div
           aria-hidden="true"

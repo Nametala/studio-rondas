@@ -4,9 +4,9 @@ import { RevealGroup, RevealItem, SectionEyebrow, SectionHeading } from './Revea
 
 export function Diferenciais() {
   return (
-    <section className="scroll-mt-20 bg-surface-alt px-5 py-24 sm:px-8 sm:py-32">
+    <section className="scroll-mt-20 bg-surface-alt px-5 py-24 sm:px-8 sm:py-36">
       <div className="mx-auto max-w-6xl">
-        <SectionEyebrow>02 — Por que o Studio Rondas</SectionEyebrow>
+        <SectionEyebrow>Por que o Rondas</SectionEyebrow>
         <SectionHeading>Perto de casa, perto de você.</SectionHeading>
 
         <RevealGroup

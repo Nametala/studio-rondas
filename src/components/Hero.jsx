@@ -102,21 +102,6 @@ export function Hero() {
         <HeroArt className="mx-auto aspect-[560/680] w-full max-w-sm lg:max-w-none" />
       </div>
 
-      <motion.a
-        href="#sobre"
-        aria-label="Rolar para a próxima seção"
-        {...rise(0.9)}
-        className="relative mx-auto mt-14 flex w-fit items-center gap-2 rounded-full text-sm font-medium uppercase tracking-[0.16em] text-ink-muted transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:mt-16"
-      >
-        <motion.span
-          aria-hidden="true"
-          animate={{ y: [0, 5, 0] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-        >
-          ↓
-        </motion.span>
-        Continuar
-      </motion.a>
     </section>
   )
 }
