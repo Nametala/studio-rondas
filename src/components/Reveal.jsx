@@ -66,10 +66,11 @@ export function WordReveal({
   delay = 0,
   stagger = 0.07,
   inView = false,
+  ativo = true,
 }) {
   const activate = inView
     ? { whileInView: 'visible', viewport: { once: true, margin: '-80px' } }
-    : { animate: 'visible' }
+    : { animate: ativo ? 'visible' : 'hidden' }
 
   return (
     <motion.span

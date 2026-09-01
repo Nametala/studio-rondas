@@ -7,11 +7,12 @@ import { HeroArt } from './HeroArt'
 import { Magnetic } from './Magnetic'
 import { CountUp } from './CountUp'
 
-// Entrada do hero — dispara no carregamento, não no scroll: esta seção já
-// está em tela quando a página abre.
-const rise = (delay = 0) => ({
+// Entrada do hero. Fica presa até `pronto` — que a App libera quando a cortina
+// da abertura começa a subir. Sem essa amarra o hero animava escondido atrás
+// dela e a intro revelava uma página já parada.
+const rise = (delay = 0, pronto = true) => ({
   initial: { opacity: 0, y: 24 },
-  animate: { opacity: 1, y: 0 },
+  animate: pronto ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 },
   transition: { duration: 0.8, delay, ease: EASE },
 })
 
@@ -24,7 +25,7 @@ const SPARK =
   'L 0.707 0.707 L 0.138 0.333 L 0 1 L -0.138 0.333 L -0.707 0.707 ' +
   'L -0.333 0.138 L -1 0 L -0.333 -0.138 L -0.707 -0.707 L -0.138 -0.333 Z'
 
-export function Hero() {
+export function Hero({ pronto = true }) {
   return (
     <section
       id="topo"
@@ -33,7 +34,7 @@ export function Hero() {
       <div className="mx-auto max-w-6xl">
         {/* Assinatura de canto das artes deles, trazida para a página. */}
         <motion.div
-          {...rise(0)}
+          {...rise(0, pronto)}
           className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-semibold uppercase tracking-[0.22em] text-accent sm:text-sm"
         >
           <svg viewBox="-1 -1 2 2" className="h-3 w-3 shrink-0" aria-hidden="true">
@@ -48,13 +49,13 @@ export function Hero() {
 
         {/* Assinatura tipográfica: o nome ocupa a largura inteira do container. */}
         <h1 className="font-display mt-5 text-[clamp(2.5rem,10vw,8.5rem)] uppercase leading-[0.86] tracking-[-0.02em] text-ink">
-          <WordReveal lines={MARCA} delay={0.1} stagger={0.12} />
+          <WordReveal lines={MARCA} delay={0.1} stagger={0.12} ativo={pronto} />
         </h1>
 
         <HeroArt className="mt-8 aspect-[16/10] w-full rounded-3xl sm:mt-10 sm:aspect-[21/9]" />
 
         <div className="mt-10 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-16">
-          <motion.div {...rise(0.62)}>
+          <motion.div {...rise(0.62, pronto)}>
             <p className="font-display max-w-2xl text-[1.75rem] leading-[1.15] text-balance text-ink sm:text-4xl">
               Treino <span className="text-accent">de perto</span>.
               <span className="italic text-ink-muted"> Resultado real.</span>
@@ -66,7 +67,7 @@ export function Hero() {
           </motion.div>
 
           <motion.div
-            {...rise(0.72)}
+            {...rise(0.72, pronto)}
             className="flex flex-col gap-6 lg:items-end"
           >
             {/* Um único CTA primário — o padrão hero-centric pede um só. */}
@@ -94,7 +95,7 @@ export function Hero() {
                     <motion.span
                       key={i}
                       initial={{ opacity: 0, scale: 0.4 }}
-                      animate={{ opacity: 1, scale: 1 }}
+                      animate={pronto ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.4 }}
                       transition={{ delay: 0.95 + i * 0.07, duration: 0.4, ease: EASE }}
                     >
                       <StarIcon />

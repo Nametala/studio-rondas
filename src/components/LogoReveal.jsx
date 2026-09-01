@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { EASE } from '../lib/motion'
+import { CHAVE_INTRO, introVaiAbrir } from '../lib/intro'
 
 const SPARKLE =
   'M 0 -1 L 0.138 -0.333 L 0.707 -0.707 L 0.333 -0.138 L 1 0 L 0.333 0.138 ' +
   'L 0.707 0.707 L 0.138 0.333 L 0 1 L -0.138 0.333 L -0.707 0.707 ' +
   'L -0.333 0.138 L -1 0 L -0.333 -0.138 L -0.707 -0.707 L -0.138 -0.333 Z'
 
-const CHAVE = 'rondas:intro-visto'
 const DURACAO = 1150 // ms de exibição; some o wipe de 0,72s = ~1,9s no total
 
 // Abertura com o logo. Três travas deliberadas, porque intro mal calibrada
@@ -16,27 +16,18 @@ const DURACAO = 1150 // ms de exibição; some o wipe de 0,72s = ~1,9s no total
 //   2. Não existe sob prefers-reduced-motion.
 //   3. É uma camada por cima: a página renderiza normalmente atrás, então a
 //      intro não atrasa o conteúdo nem o carregamento da foto do hero.
-// A decisão é síncrona e acontece na inicialização do estado, não num efeito:
-// a intro precisa existir já no primeiro quadro, senão pisca a página antes
-// da cortina aparecer. Só leitura aqui — a escrita fica no efeito.
-function deveAbrir() {
-  try {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false
-    return sessionStorage.getItem(CHAVE) !== '1'
-  } catch {
-    // Modo privativo ou storage bloqueado: não anima.
-    return false
-  }
-}
-
-export function LogoReveal() {
-  const [ativo, setAtivo] = useState(deveAbrir)
+//
+// `onFim` dispara quando a cortina COMEÇA a subir, não quando termina: assim o
+// hero entra durante os 0,72s da subida, e a página se monta na frente de quem
+// olha em vez de aparecer já pronta e parada.
+export function LogoReveal({ onFim }) {
+  const [ativo, setAtivo] = useState(introVaiAbrir)
 
   useEffect(() => {
     if (!ativo) return
 
     try {
-      sessionStorage.setItem(CHAVE, '1')
+      sessionStorage.setItem(CHAVE_INTRO, '1')
     } catch {
       // Sem storage a intro roda uma vez e pronto; não é motivo para abortar.
     }
@@ -45,12 +36,15 @@ export function LogoReveal() {
     const overflowAnterior = raiz.style.overflow
     raiz.style.overflow = 'hidden'
 
-    const t = setTimeout(() => setAtivo(false), DURACAO)
+    const t = setTimeout(() => {
+      setAtivo(false)
+      onFim?.()
+    }, DURACAO)
     return () => {
       clearTimeout(t)
       raiz.style.overflow = overflowAnterior
     }
-  }, [ativo])
+  }, [ativo, onFim])
 
   return (
     <AnimatePresence>
