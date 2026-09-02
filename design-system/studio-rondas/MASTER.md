@@ -160,24 +160,32 @@ que sobre o papel claro ela precisa se sustentar sozinha.
 
 ## Hero
 
-**O nome da marca é o hero.** Numa versão anterior ele era um rótulo miúdo acima de um
-slogan genérico, e o Studio Rondas ficava em segundo plano na própria página. Agora
-"STUDIO RONDAS" em Fraunces ocupa a largura inteira do container — `clamp(2.5rem, 10vw,
-8.5rem)`, que resolve para 136px em 1440 e 40px em 375, **sempre em uma linha só**.
+**O hero é a venda, não um cartaz.** Duas versões anteriores erraram em direções
+opostas: uma deixou o nome da marca como rótulo miúdo acima de um slogan genérico,
+e a seguinte pôs "STUDIO RONDAS" ocupando a largura toda — bonito, mas quem chega
+pela primeira vez não conhece o nome, conhece o problema que tem. A marca não vende
+sozinha.
 
-Estrutura, seguindo o padrão hero-centric (hero domina a viewport, texto mínimo):
+Ordem de leitura, do maior para o menor:
 
-1. Linha de assinatura: ✷ + `SAÚDE INTEGRADA` + local — é a etiqueta de canto das artes
-   deles trazida para a página.
-2. O nome, gigante.
-3. Faixa de foto cinematográfica (21:9 no desktop, 16:10 no mobile), largura total.
-4. Slogan como apoio, não como manchete, com "de perto" em ultramarino.
-5. **Um único CTA primário.** O secundário é link de texto sublinhado — dois botões de
-   peso igual dividem a atenção e o padrão pede um só.
+1. **Masthead** — logo + "Studio Rondas" na serifa + `SAÚDE INTEGRADA` + a cidade,
+   fechado por um fio. A marca abre a página e fica em primeiro plano, mas em tamanho
+   de cabeçalho, não de manchete.
+2. **A promessa**, maior elemento da página: `clamp(2.75rem, 6.5vw, 4.75rem)`, duas
+   linhas, com uma palavra em ultramarino.
+3. **A oferta em uma frase** — as quatro modalidades no mesmo lugar, turma reduzida,
+   professor acompanhando. É o que diferencia de academia grande.
+4. **CTA + prova social lado a lado.** A nota 5,0 e as 58 avaliações são o argumento
+   mais forte que eles têm; precisam ser lidas no mesmo golpe de vista que o botão.
+   Um CTA primário só.
+5. **Redutor de atrito** logo abaixo: a primeira aula é experimental.
+6. **Foto** à direita, retrato, sem selo ou etiqueta por cima.
+7. **Faixa das quatro modalidades** fechando, em grade com fios — responde "o que é
+   isso?" de imediato para quem nunca ouviu falar do studio.
 
-Regras: o `<h1>` nunca passa de uma linha no desktop (se passar, reduzir o `vw` do clamp,
-não inserir `<br>`). Nada de selo ou etiqueta flutuando sobre a foto — foi removido a
-pedido e deixava a imagem poluída. Nada de faixa giratória (marquee) abaixo do hero.
+Regras: o `<h1>` cabe em duas linhas (se passar de três, reduzir o `vw` do clamp, nunca
+inserir `<br>`). Nada de etiqueta flutuando sobre a foto. Nada de faixa giratória.
+Não trocar a promessa pelo nome da marca no maior tamanho — já foi testado e não vende.
 
 ---
 
